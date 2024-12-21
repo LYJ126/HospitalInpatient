@@ -32,58 +32,13 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-neo4j</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-hateoas</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web-services</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>3.0.4</version>
+            <version>3.0.3</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-jdbc</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
@@ -99,21 +54,58 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Thymeleaf 模板引擎的场景启动器 -->
         <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter-test</artifactId>
-            <version>3.0.4</version>
-            <scope>test</scope>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.2</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <!--    hutool-core-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>5.6.5</version>
+        </dependency>
+        <!--jedis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <!--redis依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--common-pool-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <!--Jackson依赖-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
     </dependencies>
 
