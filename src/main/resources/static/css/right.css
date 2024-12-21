@@ -1,0 +1,22 @@
+body {
+    /* 可以添加一些通用的页面主体样式，比如背景色等 */
+    font-family: Arial, sans-serif;
+}
+
+.margtb5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.padr5 {
+    padding-right: 5px;
+}
+
+table {
+    border-collapse: collapse; /* 合并表格边框 */
+    width: 100%;
+}
+
+h3 {
+    color: #333; /* 设置标题颜色示例 */
+}

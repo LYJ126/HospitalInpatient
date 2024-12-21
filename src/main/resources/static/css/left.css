@@ -1,0 +1,36 @@
+body {
+    /* 设置页面整体背景颜色，原JSP中颜色值16ACFF写法不太规范，这里当作十六进制处理 */
+    background-color: #16ACFF;
+}
+
+.main-table {
+    background: url(../images/tablemde.jpg);
+}
+
+.table-line-top {
+    background: url(../images/tableline_top.jpg) repeat-x;
+    background-color: #9BC2ED;
+    height: 5px;
+}
+
+.table-line-bottom {
+    background: url(../images/tableline_bottom.jpg) repeat-x;
+    background-color: #9BC2ED;
+    height: 5px;
+}
+
+.leftframetable {
+    /* 可以根据实际需求进一步添加样式属性，来精细调整表格外观，比如边框样式、单元格间距等 */
+}
+
+.left-tt-bg {
+    background: url(../images/left_tt.gif) no-repeat;
+}
+
+.STYLE1 {
+    cursor: pointer;
+}
+
+.submenu-table {
+    display: none; /* 初始时隐藏子菜单，通过JavaScript函数控制显示与隐藏 */
+}
