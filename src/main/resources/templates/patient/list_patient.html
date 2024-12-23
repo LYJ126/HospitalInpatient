@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="GBK">
+  <title>病人信息列表</title>
+  <style type="TEXT/CSS">
+    A:LINK {
+      COLOR: blue;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: none;
+    }
+
+    A:VISITED {
+      COLOR: blue;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: none;
+    }
+
+    A:HOVER {
+      COLOR: red;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: underline;
+    }
+  </style>
+<!--  <link rel="stylesheet" type="text/css" href="../../static/images/css1/ioa.css"> &lt;!&ndash; 确保此路径能正确加载样式文件 &ndash;&gt;-->
+  <script src="../../static/js/patient/list_patient.js"></script> <!-- 引入外部JavaScript文件，用于实现具体业务逻辑 -->
+</head>
+
+<body bgcolor="#ffffff">
+<br>
+<form id="searchForm" action="list_patient.html" method="post">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+    <tr>
+      <td align="center" class="lan13b">
+        病人姓名： <input id="brxm" name="brxm" value="">
+        <input type="submit" name="button" value="查询" class="button">
+      </td>
+    </tr>
+  </table>
+</form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
+  <tr>
+    <td valign="top" align="left" class="pad5">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+        <tr>
+          <td width="2%" align="right" class="pad05">
+            <img src="../../static/images/img2.gif" width="16" height="16">
+          </td>
+          <td width="98%" align="left" class="lan13b">
+            病人管理 > 病人信息管理
+          </td>
+        </tr>
+      </table>
+      <table border="0" cellspacing="0" cellpadding="0" class="margb5">
+        <tr>
+          <td width="61" align="left" class="padr5">
+            <img src="../../static/images/pic-13.jpg" onclick="window.location.href='addpatient.html'">
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="1" cellpadding="0" class="table-border margb5">
+        <tr>
+          <td colspan="11" align="left" class="tabbg">
+            <img src="../../static/images/main_pic_1.gif" align="absmiddle" width="16" height="16">
+            &nbsp;
+            <span class="lan13b"></span>
+          </td>
+        </tr>
+        <tr>
+          <th width="3%" nowrap class="COLLECTION">
+            科别
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            病床号
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            病人姓名
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            病人性别
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            病人年龄
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            病症
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            主治医生
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            入院日期
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            出院日期
+          </th>
+          <th width="7%" nowrap class="COLLECTION">
+            管理
+          </th>
+        </tr>
+        <!-- 此处数据行将通过JavaScript动态插入 -->
+      </table>
+      <form id="pageForm" action="list_patient.html" method="GET">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td colspan="11" align="right" class="tabbg hei12">
+              <!-- 分页链接将通过JavaScript动态生成 -->
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+
+</html>
