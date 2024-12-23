@@ -9,7 +9,7 @@ spring:
 #    cache: false
 #    check-template-location: 'true'
 #    mode: HTML5
-#    prefix: 'classpath:/templates/'
+#    prefix: 'classpath:/templates/files'
 #    suffix: '.html'
 #    servlet:
 #      content-type: 'text/html '
