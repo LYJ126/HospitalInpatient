@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-  <meta charset="gb2312">
-  <title>���ӽ�ʦ��Ϣ</title>
+  <meta charset="UTF-8">
+  <title>添加医生信息</title>
   <link rel="stylesheet" type="text/css" href="../../static/css/doctor/adduser.css">
-  <script type="text/javascript" src="../../static/js/doctor/adduser.js"></script>
 </head>
 
 <body>
-<form action="saveadd.jsp" method="post" name="addForm">
+<form action="saveadd.html" method="post" name="addForm">
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
     <tr>
       <td valign="top" align="left" class="pad5">
@@ -19,14 +18,14 @@
               <img src="../../static/images/img2.gif" width="16" height="16">
             </td>
             <td width="98%" align="left" class="lan13b">
-              ҽ������ > ����ҽ����Ϣ
+              医生管理 > 添加医生信息
             </td>
           </tr>
         </table>
         <table width="100%" border="0" cellpadding="1" cellspacing="1" class="table-border margb5">
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ��ţ�
+              编号：
             </td>
             <td width="36%" align="left" class="even padl5">
               <input type="text" name="number" maxlength="32" class="inputnormal" value="">
@@ -35,7 +34,7 @@
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ������
+              姓名：
             </td>
             <td width="36%" align="left" class="even padl5">
               <input type="text" name="name" maxlength="32" class="inputnormal" value=""><font color="red">*</font>
@@ -43,7 +42,7 @@
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              �Ա�
+              性别：
             </td>
             <td width="36%" align="left" class="even padl5">
               <input type="text" name="sex" maxlength="32" class="inputnormal" value="">
@@ -51,7 +50,7 @@
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ְ�ƣ�
+              职称：
             </td>
             <td width="36%" align="left" class="even padl5">
               <input type="text" name="zhicheng" maxlength="32" class="inputnormal" value="">
@@ -59,7 +58,7 @@
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ְ��
+              职务：
             </td>
             <td width="36%" align="left" class="even padl5">
               <input type="text" name="zhiwu" maxlength="32" class="inputnormal" value="">
@@ -67,7 +66,7 @@
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              �Ʊ�
+              科别：
             </td>
             <td width="36%" align="left" class="even padl5">
               <input type="text" name="kebie" maxlength="32" class="inputnormal" value="">
@@ -75,7 +74,7 @@
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              �������ڣ�
+              出生日期：
             </td>
             <td width="36%" align="left" class="even padl5">
               <input class="Wdate" type="text" name="birthtime" maxlength="32" onfocus="WdatePicker({readOnly:true})" />
@@ -83,7 +82,7 @@
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              �������ڣ�
+              工作日期：
             </td>
             <td width="36%" align="left" class="even padl5">
               <input class="Wdate" type="text" name="worktime" maxlength="32" onfocus="WdatePicker({readOnly:true})" />
@@ -93,10 +92,10 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="50%" align="right" class="padr5">
-              <input type="submit" onclick="return checkform();" name="button" value="�� ��" class="button">
+              <input type="submit" onclick="return checkform();" name="button" value="保 存" class="button">
             </td>
             <td width="50%" align="left" class="padl5">
-              <input name="button1" type="button" class="button" onClick="history.go(-1);" value="�� ��">
+              <input name="button1" type="button" class="button" onClick="history.go(-1);" value="返 回">
             </td>
           </tr>
         </table>
@@ -104,7 +103,7 @@
     </tr>
   </table>
 </form>
-<script src="script.js"></script> <!-- �����ⲿJavaScript�ļ��������߼� -->
+<script type="text/javascript" src="../../static/js/doctor/adduser.js"></script> <!-- 引入外部JavaScript文件存放相关逻辑 -->
 </body>
 
 </html>

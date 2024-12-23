@@ -9,7 +9,7 @@ TH.COLLECTION { font-size: 13px; line-height:20px; background-color: #EDF1FC; co
 TD.COLLECTION { font-size: 12px; line-height:20px; background-color: #EDF1FC; color: #000000;}
 td.even { font-size:12px; background-color: #FFFFFF;}
 .inputnormal {BORDER: #8FABCF 1px solid; FONT-SIZE: 12px; BACKGROUND-COLOR: #FFFFFF;}
-.button { background:url(../../images/pic-06.jpg) repeat-x left; border:1px solid #8FABCF; height:20px;}
+.button { background:url(../images/pic-06.jpg) repeat-x left; border:1px solid #8FABCF; height:20px;}
 
 
 .pad5 { padding:5px;}
@@ -17,8 +17,8 @@ td.even { font-size:12px; background-color: #FFFFFF;}
 .padl5 { padding-left:5px;}
 .padr5 { padding-right:5px;}
 .margb5 { margin-bottom:5px;}
-.dqbg { background:url(imagee.gif) repeat-x left; border:1px solid #8EAACF; line-height:23px;}
-.tabbg { background:url(imagee.gif) repeat-x left; height:23px; padding-left:5px;}
+.dqbg { background:url(../images/imagee.gif) repeat-x left; border:1px solid #8EAACF; line-height:23px;}
+.tabbg { background:url(../images/imagee.gif) repeat-x left; height:23px; padding-left:5px;}
 .hei12 { color:#000000; font-size:12px; }
 .hei12 a:link { color: #000000; text-decoration: none;}
 .hei12 a:visited { color: #000000; text-decoration: none;}
