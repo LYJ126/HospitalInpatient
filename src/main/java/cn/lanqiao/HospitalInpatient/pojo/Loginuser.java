@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 病床
- */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@TableName("")
-public class bed {
+@TableName("loginuser")
+public class Loginuser {
+
+  private long id;
+  private String loginname;
+  private String loginpwd;
+
 }
