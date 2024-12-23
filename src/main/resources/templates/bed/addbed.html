@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="gb2312">
+    <title>添加病床信息</title>
+<!--    <link rel="stylesheet" type="text/css" href="../../images/css1/ioa.css">-->
+    <script src="../../static/js/bed/addbed.js"></script> <!-- 引入外部的js文件，将原本JSP中的js逻辑移到这里，后续给出script.js代码 -->
+</head>
+
+<body>
+
+<FORM id="addForm" action="savebed.html" method="post"> <!-- 这里假设后续处理表单提交的页面是savebed.html，可按需修改 -->
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
+        <tr>
+            <td valign="top" align="left" class="pad5">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+                    <tr>
+                        <td width="2%" align="right" class="pad05">
+                            <img src="../../static/images/img2.gif" width="16" height="16">
+                        </td>
+                        <td width="98%" align="left" class="lan13b">
+                            病床管理 > 添加病床信息
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%" border="0" cellpadding="1" cellspacing="1" class="table-border margb5">
+                    <tr>
+                        <td width="14%" align="right" class="COLLECTION">
+                            科别：
+                        </td>
+                        <td width="36%" align="left" class="even padl5">
+                            <input type="text" name="kebie" maxlength="32" class="inputnormal" value="">
+                            <font color="red">*</font>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="14%" align="right" class="COLLECTION">
+                            病床号：
+                        </td>
+                        <td width="36%" align="left" class="even padl5">
+                            <input type="text" name="number" maxlength="32" class="inputnormal" value=""><font color="red">*</font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="14%" align="right" class="COLLECTION">
+                            花销：
+                        </td>
+                        <td width="36%" align="left" class="even padl5">
+                            <input type="text" name="cost" maxlength="32" class="inputnormal" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="14%" align="right" class="COLLECTION">
+                            使用状态：
+                        </td>
+                        <td width="36%" align="left" class="even padl5">
+                            <input type="text" name="state" maxlength="32" class="inputnormal" value="">
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="50%" align="right" class="padr5">
+                            <input type="submit" name="button" value="保 存" class="button">
+                        </td>
+                        <td width="50%" align="left" class="padl5">
+                            <input name="button1" type="button" class="button" onClick="history.go(-1);" value="返 回">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</FORM>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
