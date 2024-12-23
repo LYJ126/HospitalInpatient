@@ -2,17 +2,13 @@
 <html lang="en">
 
 <head>
-  <meta charset="gb2312">
-  <title>ÃÌº” ’∑—–≈œ¢</title>
-  <link rel="stylesheet" type="text/css" href="../../static/css/cost/addcost.css"> <!-- »∑±£¥À¬∑æ∂ƒ‹’˝»∑º”‘ÿ—˘ ΩŒƒº˛ -->
-  <script type="text/javascript" src="../../static/calendar/WdatePicker.js"></script> <!-- “˝»Î»’∆⁄—°‘Ò≤Âº˛£¨–Ë»∑±£¬∑æ∂’˝»∑ -->
-  <script src="../../static/js/cost/addcost.js"></script> <!-- “˝»ÎÕ‚≤øJavaScriptŒƒº˛£¨”√”⁄ µœ÷æﬂÃÂ“µŒÒ¬ﬂº≠ -->
+  <meta charset="UTF-8">
+  <title>Ê∑ªÂä†ÂåªÁîü‰ø°ÊÅØ</title>
+  <link rel="stylesheet" type="text/css" href="../../css/doctor/adduser.css">
 </head>
 
 <body>
-
-<FORM id="addForm" action="savecost.html" method="post"> <!-- ºŸ…Ë¥¶¿Ì±Ìµ•Ã·Ωªµƒ∫Û∂À“≥√ÊŒ™savecost.html£¨∞¥–Ëµ˜’˚ -->
-
+<form action="saveadd.html" method="post" name="addForm">
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
     <tr>
       <td valign="top" align="left" class="pad5">
@@ -22,101 +18,92 @@
               <img src="../../static/images/img2.gif" width="16" height="16">
             </td>
             <td width="98%" align="left" class="lan13b">
-               ’∑—π‹¿Ì > ÃÌº” ’∑—–≈œ¢
+              ÂåªÁîüÁÆ°ÁêÜ > Ê∑ªÂä†ÂåªÁîü‰ø°ÊÅØ
             </td>
           </tr>
         </table>
         <table width="100%" border="0" cellpadding="1" cellspacing="1" class="table-border margb5">
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ø∆±£∫
+              ÁºñÂè∑Ôºö
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="kebie" maxlength="32" class="inputnormal">
-              <font color="red">*</font>
-            </td>
-          </tr>
-
-          <tr>
-            <td width="14%" align="right" class="COLLECTION">
-              ≤°¥≤∫≈£∫
-            </td>
-            <td width="36%" align="left" class="even padl5">
-              <input type="text" name="number" maxlength="32" class="inputnormal">
+              <input type="text" name="number" maxlength="32" class="inputnormal" value="">
               <font color="red">*</font>
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              –’√˚£∫
+              ÂßìÂêçÔºö
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="name" maxlength="32" class="inputnormal">
+              <input type="text" name="name" maxlength="32" class="inputnormal" value=""><font color="red">*</font>
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-               ’∑—œÓƒø£∫
+              ÊÄßÂà´Ôºö
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="xiangmu" maxlength="32" class="inputnormal">
+              <input type="text" name="sex" maxlength="32" class="inputnormal" value="">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              µ•º€£∫
+              ËÅåÁß∞Ôºö
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="danjia" maxlength="32" class="inputnormal">
+              <input type="text" name="zhicheng" maxlength="32" class="inputnormal" value="">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-               ˝¡ø£∫
+              ËÅåÂä°Ôºö
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="shuliang" maxlength="32" class="inputnormal">
+              <input type="text" name="zhiwu" maxlength="32" class="inputnormal" value="">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              Ω∂Ó£∫
+              ÁßëÂà´Ôºö
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="jine" maxlength="32" class="inputnormal">
+              <input type="text" name="kebie" maxlength="32" class="inputnormal" value="">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              »’∆⁄£∫
+              Âá∫ÁîüÊó•ÊúüÔºö
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input class="Wdate" type="text" name="riqi" maxlength="32">
+              <input class="Wdate" type="text" name="birthtime" maxlength="32" onfocus="WdatePicker({readOnly:true})" />
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              Â∑•‰ΩúÊó•ÊúüÔºö
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input class="Wdate" type="text" name="worktime" maxlength="32" onfocus="WdatePicker({readOnly:true})" />
             </td>
           </tr>
         </table>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="50%" align="right" class="padr5">
-              <input type="submit" name="button" value="±£ ¥Ê" class="button">
+              <input type="submit" onclick="return checkform();" name="button" value="‰øù Â≠ò" class="button">
             </td>
             <td width="50%" align="left" class="padl5">
-              <input name="button1" type="button" class="button" onClick="history.go(-1);" value="∑µ ªÿ">
+              <input name="button1" type="button" class="button" onClick="history.go(-1);" value="Ëøî Âõû">
             </td>
           </tr>
         </table>
       </td>
     </tr>
   </table>
-
-</FORM>
-
-
-<br>
-<br>
-<br>
-<br>
-
+</form>
+<script type="text/javascript" src="../../static/js/doctor/adduser.js"></script> <!-- ÂºïÂÖ•Â§ñÈÉ®JavaScriptÊñá‰ª∂Â≠òÊîæÁõ∏ÂÖ≥ÈÄªËæë -->
 </body>
 
 </html>
