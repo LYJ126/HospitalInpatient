@@ -9,14 +9,12 @@ body {
 
 .top-logo {
     background: url(../images/top_logo.jpg) no-repeat;
-    /*background-size: auto 66px;*/
     width :194px;
     height :60px;
 }
 
 .top-bg {
     background: url(../images/top_bg.jpg) no-repeat;
-    background-size: auto auto;
 }
 
 .top-link {

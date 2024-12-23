@@ -4,4 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.lanqiao.HospitalInpatient.mapper.LoginuserMapper">
 
+    <select id="selectAll" resultType="cn.lanqiao.HospitalInpatient.pojo.Loginuser">
+        select * from loginuser
+    </select>
 </mapper>
