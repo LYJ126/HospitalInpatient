@@ -9,5 +9,17 @@ function login() {
         document.forms["form1"]["password"].focus();
         return false;
     }
+
+    axios({
+        method: 'post',
+        url: 'index',
+        data: {
+            username: document.forms["form1"]["username"].value, // 获取用户名
+            password: document.forms["form1"]["password"].value // 获取密码
+        }
+    }).then((result)=>{
+        console.log(result)
+    })
+
     return true;
 }
