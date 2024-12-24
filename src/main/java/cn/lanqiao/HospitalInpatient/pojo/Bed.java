@@ -10,11 +10,15 @@ import lombok.NoArgsConstructor;
 @Data
 @TableName("bed")
 public class Bed {
-
+  // ID
   private long id;
+  // 科别
   private String kebie;
+  // 病床号
   private String number;
+  // 花销
   private String cost;
+  // 使用状态
   private String state;
 
 }
