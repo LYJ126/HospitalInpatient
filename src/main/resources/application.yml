@@ -5,12 +5,12 @@ spring:
     username: root
     password: 20010720Lmx
     url: jdbc:mysql://47.109.206.82/hospital?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&characterEncoding=utf8&characterSetResults=utf8
-  thymeleaf:
-    cache: false
-    check-template-location: 'true'
-    mode: HTML5
-    prefix: 'classpath:/static/files/'
-    suffix: '.html'
+#  thymeleaf:
+#    cache: false
+#    check-template-location: 'true'
+#    mode: HTML5
+#    prefix: 'classpath:/static/files/'
+#    suffix: '.html'
 #    servlet:
 #      content-type: 'text/html '
 #    encoding: UTF-8
