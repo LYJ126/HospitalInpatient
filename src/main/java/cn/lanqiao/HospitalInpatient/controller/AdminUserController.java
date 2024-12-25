@@ -1,7 +1,7 @@
 package cn.lanqiao.HospitalInpatient.controller;
 
 import cn.lanqiao.HospitalInpatient.pojo.Admin;
-import cn.lanqiao.HospitalInpatient.service.LoginUserService;
+import cn.lanqiao.HospitalInpatient.service.AdminUserService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,17 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
-public class LoginUserController {
+public class AdminUserController {
 
     @Autowired
-    private LoginUserService loginUserService;
+    private AdminUserService adminUserService;
 
     @PostMapping("/login")
     public void login(@RequestParam String username, @RequestParam String password, Admin admin, HttpServletResponse response) {
         try {
             admin.setUsername(username);
             admin.setPassword(password);
-            Admin login = loginUserService.login(admin);
+            Admin login = adminUserService.login(admin);
             if (login != null) {
                 System.out.println("登录成功");
                 response.sendRedirect("/index.html");

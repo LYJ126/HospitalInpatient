@@ -1,22 +1,20 @@
 package cn.lanqiao.HospitalInpatient.service.impl;
 
-import cn.lanqiao.HospitalInpatient.mapper.LoginUserMapper;
+import cn.lanqiao.HospitalInpatient.mapper.AdminUserMapper;
 import cn.lanqiao.HospitalInpatient.pojo.Admin;
-import cn.lanqiao.HospitalInpatient.service.LoginUserService;
+import cn.lanqiao.HospitalInpatient.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginUserServiceImpl implements LoginUserService {
+public class AdminUserServiceImpl implements AdminUserService {
 
     @Autowired
-    private LoginUserMapper loginUserMapper;
+    private AdminUserMapper adminUserMapper;
 
     @Override
     public Admin login(Admin admin) {
-        Admin result = loginUserMapper.login(admin);
-//        System.out.println(admin.getUsername());
-//        System.out.println(admin.getPassword());
+        Admin result = adminUserMapper.login(admin);
         if (result != null) {
             return result;
         }else {

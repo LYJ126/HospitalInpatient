@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
-public interface LoginUserMapper {
+public interface AdminUserMapper {
 
     @Select("select * from admin where username = #{username} and password = #{password}")
     Admin login(Admin admin);
