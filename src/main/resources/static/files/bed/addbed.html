@@ -80,3 +80,45 @@
 <br>
 </body>
 </html>
+<script src="../../js/axios.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('addForm');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // 阻止表单默认提交
+
+            // 获取表单数据
+            const formData = {
+                kebie: form.kebie.value.trim(),
+                number: form.number.value.trim(),
+                cost: form.cost.value.trim(),
+                state: form.state.value.trim()
+            };
+
+            // 表单验证
+            if (!formData.kebie || !formData.number) {
+                alert('科室和病床号不能为空！');
+                return;
+            }
+
+            // 发送请求
+            axios({
+                url: 'http://localhost:8080/bed/addBed',
+                method: 'post',
+                data: formData
+            }).then(response => {
+                if (response.data.code === 200) {
+                    alert('添加成功！');
+                    // 跳转到列表页面
+                    window.location.href = 'list_bed.html';
+                } else {
+                    alert(response.data.message || '添加失败！');
+                }
+            }).catch(error => {
+                console.error('添加失败：', error);
+                alert('添加失败，请稍后重试！');
+            });
+        });
+    });
+</script>
