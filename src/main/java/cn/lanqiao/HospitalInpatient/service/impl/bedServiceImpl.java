@@ -28,13 +28,13 @@ public class bedServiceImpl implements BedService {
     //新增病床信息
     @Override
     public int addBed(Bed bed) {
-            int result = BedMapper.addBed(bed);
-            if (result > 0){
-                //操作成功 result > 0
-                return 1;
-            }else {
-                return 0;
-            }
+        int result = BedMapper.addBed(bed);
+        if (result > 0){
+            //操作成功 result > 0
+            return 1;
+        }else {
+            return 0;
+        }
     }
 
     //删除病床信息
