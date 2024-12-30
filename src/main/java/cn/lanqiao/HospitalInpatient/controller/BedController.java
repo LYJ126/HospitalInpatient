@@ -71,8 +71,6 @@ public class BedController {
     @PostMapping("/updateBed")
     public ResponseUtils update(@RequestBody Bed bed){
         try {
-            //我们获取到了前端的四个参数之后，下一步应该是干嘛? 主要是为了修改
-            //操作数据库，但是写到这里发现少了东西?接口
             int result = bedService.updateBed(bed);
             if (result == 1){
                 return new ResponseUtils(200,"修改成功");
