@@ -2,107 +2,126 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Ê∑ªÂä†ÂåªÁîü‰ø°ÊÅØ</title>
-  <link rel="stylesheet" type="text/css" href="../../css/doctor/adduser.css">
+  <meta charset="gb2312">
+  <title>ÃÌº”≤°»À–≈œ¢</title>
+  <script type="text/javascript" src="../../static/calendar/WdatePicker.js"></script> <!-- “˝»Î»’∆⁄—°‘Ò≤Âº˛£¨–Ë»∑±£¬∑æ∂’˝»∑ -->
 </head>
 
 <body>
-<form action="saveadd.html" method="post" name="addForm">
+<FORM id="addForm" action="savepatient.html" method="post"> <!-- ºŸ…Ë¥¶¿Ì±Ìµ•Ã·Ωªµƒ∫Û∂À“≥√ÊŒ™savepatient.html£¨∞¥–Ëµ˜’˚ -->
+
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
     <tr>
       <td valign="top" align="left" class="pad5">
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
           <tr>
             <td width="2%" align="right" class="pad05">
-              <img src="../../images/img2.gif" width="16" height="16">
+              <img src="../../static/images/img2.gif" width="16" height="16">
             </td>
             <td width="98%" align="left" class="lan13b">
-              ÂåªÁîüÁÆ°ÁêÜ > Ê∑ªÂä†ÂåªÁîü‰ø°ÊÅØ
+              ≤°»Àπ‹¿Ì > ÃÌº”≤°»À–≈œ¢
             </td>
           </tr>
         </table>
         <table width="100%" border="0" cellpadding="1" cellspacing="1" class="table-border margb5">
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ÁºñÂè∑Ôºö
+              ø∆±£∫
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="number" maxlength="32" class="inputnormal" value="">
+              <input type="text" name="kebie" maxlength="32" class="inputnormal">
+              <font color="red">*</font>
+            </td>
+          </tr>
+
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              ≤°¥≤∫≈£∫
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="number" maxlength="32" class="inputnormal">
               <font color="red">*</font>
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ÂßìÂêçÔºö
+              –’√˚£∫
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="name" maxlength="32" class="inputnormal" value=""><font color="red">*</font>
+              <input type="text" name="name" maxlength="32" class="inputnormal">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ÊÄßÂà´Ôºö
+              –‘±£∫
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="sex" maxlength="32" class="inputnormal" value="">
+              <input type="text" name="sex" maxlength="32" class="inputnormal">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ËÅåÁß∞Ôºö
+              ƒÍ¡‰£∫
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="zhicheng" maxlength="32" class="inputnormal" value="">
+              <input type="text" name="age" maxlength="32" class="inputnormal">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ËÅåÂä°Ôºö
+              ≤°÷¢£∫
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="zhiwu" maxlength="32" class="inputnormal" value="">
+              <input type="text" name="bingzheng" maxlength="32" class="inputnormal">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              ÁßëÂà´Ôºö
+              ÷˜÷Œ“Ω…˙£∫
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input type="text" name="kebie" maxlength="32" class="inputnormal" value="">
+              <input type="text" name="doctor" maxlength="32" class="inputnormal">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              Âá∫ÁîüÊó•ÊúüÔºö
+              »Î‘∫»’∆⁄£∫
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input class="Wdate" type="text" name="birthtime" maxlength="32" onfocus="WdatePicker({readOnly:true})" />
+              <input class="Wdate" type="text" name="ruyuan" maxlength="32">
             </td>
           </tr>
           <tr>
             <td width="14%" align="right" class="COLLECTION">
-              Â∑•‰ΩúÊó•ÊúüÔºö
+              ≥ˆ‘∫»’∆⁄£∫
             </td>
             <td width="36%" align="left" class="even padl5">
-              <input class="Wdate" type="text" name="worktime" maxlength="32" onfocus="WdatePicker({readOnly:true})" />
+              <input class="Wdate" type="text" name="chuyuan" maxlength="32">
             </td>
           </tr>
         </table>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="50%" align="right" class="padr5">
-              <input type="submit" onclick="return checkform();" name="button" value="‰øù Â≠ò" class="button">
+              <input type="submit" name="button" value="±£ ¥Ê" class="button">
             </td>
             <td width="50%" align="left" class="padl5">
-              <input name="button1" type="button" class="button" onClick="history.go(-1);" value="Ëøî Âõû">
+              <input name="button1" type="button" class="button" onClick="history.go(-1);" value="∑µ ªÿ">
             </td>
           </tr>
         </table>
       </td>
     </tr>
   </table>
-</form>
+
+</FORM>
+
+
+<br>
+<br>
+<br>
+<br>
+
 </body>
 
 </html>
