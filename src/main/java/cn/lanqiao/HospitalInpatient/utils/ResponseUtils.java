@@ -4,11 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @Author: LYJ
- * @Date: 2020/12/3 10:41
- * 响应工具类
- */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,4 +21,5 @@ public class ResponseUtils<T> {
     public ResponseUtils(Integer code){
         this.code = code;
     }
+
 }
