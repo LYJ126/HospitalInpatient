@@ -111,5 +111,41 @@
   </tr>
 </table>
 </body>
+<script src="../../js/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 发送 axios 请求，查询所有的病床信息
+    axios({
+      url: "http://localhost:8080/costs",
+      method: "get"
+    }).then((response) => {
+      // 获取表格元素
+      const table = document.getElementById('costInfoTable');
 
+      // 遍历响应数据
+      response.data.data.forEach(cost => {
+        // 创建新行
+        const row = document.createElement('tr');
+
+        // 设置行内容
+        row.innerHTML = `
+          <td align="center">${cost.kebie}</td>
+          <td align="center">${cost.number}</td>
+          <td align="center">${cost.cost}元</td>
+          <td align="center">${cost.state}</td>
+          <td align="center">
+            <a href="javascript:void(0)" onclick="editBed(${cost.id})">修改</a> |
+            <a href="javascript:void(0)" onclick="deleteBed(${cost.id})">删除</a>
+          </td>
+        `;
+
+        // 将新行添加到表格中
+        table.appendChild(row);
+      });
+    }).catch((error) => {
+      console.error('请求失败：', error);
+      alert('获取收费信息失败，请稍后重试');
+    });
+  });
+</script>
 </html>
