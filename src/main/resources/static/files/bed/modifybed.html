@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>修改病床信息</title>
-  <link rel="stylesheet" type="text/css" href="../images/css1/ioa.css"> <!-- 注意这里路径需确保正确，原JSP中通过相对路径引入样式 -->
+<!--  <link rel="stylesheet" type="text/css" href="/static/images/css1/ioa.css"> &lt;!&ndash; 注意这里路径需确保正确，原JSP中通过相对路径引入样式 &ndash;&gt;-->
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
           <tr>
             <td width="2%" align="right" class="pad05">
-              <img src="../images/img2.gif" width="16" height="16">
+              <img src="../../images/img2.gif" width="16" height="16">
             </td>
             <td width="98%" align="left" class="lan13b">
               病床管理 > 修改病床信息
@@ -87,4 +87,107 @@
 
 </body>
 
-</html>
+<script src="../../js/axios.min.js"></script>
+<script>
+  // 改进的获取URL参数函数
+  function getUrlParam(name) {
+    try {
+      const search = window.location.search;
+      console.log('URL参数字符串:', search);  // 调试日志
+
+      if (!search) {
+        console.log('URL中没有参数');
+        return null;
+      }
+
+      const urlParams = new URLSearchParams(search);
+      const value = urlParams.get(name);
+      console.log(`参数${name}的值:`, value);  // 调试日志
+
+      return value;
+    } catch (error) {
+      console.error('获取参数错误:', error);
+      return null;
+    }
+  }
+
+  // 页面加载时渲染数据
+  window.onload = function() {
+    const id = getUrlParam('id');
+    console.log('获取到的ID:', id);  // 调试日志
+
+    if (!id) {
+      alert('请从列表页面进入修改页面');
+      return;
+    }
+
+    // 使用 selectBed 接口
+    axios({
+      url: 'http://localhost:8080/bed/selectBed',  // 使用原有的selectBed接口
+      method: 'get'
+    }).then(response => {
+      console.log('API响应:', response.data);  // 调试日志
+
+      if (response.data.code === 200) {
+        // 从返回的列表中找到对应id的病床信息
+        const bedList = response.data.data;
+        const bed = bedList.find(item => item.id == id);
+
+        if (bed) {
+          // 填充表单数据
+          document.getElementById('id').value = bed.id || '';
+          document.getElementsByName('kebie')[0].value = bed.kebie || '';
+          document.getElementsByName('number')[0].value = bed.number || '';
+          document.getElementsByName('cost')[0].value = bed.cost || '';
+          document.getElementsByName('state')[0].value = bed.state || '';
+        } else {
+          alert('未找到对应的病床信息');
+        }
+      } else {
+        alert('获取病床信息失败：' + (response.data.message || '未知错误'));
+      }
+    }).catch(error => {
+      console.error('获取病床信息失败：', error);
+      alert('获取病床信息失败，请稍后重试');
+    });
+  }
+
+  // 修改表单提交处理
+  document.getElementById('addForm').onsubmit = function (e) {
+    e.preventDefault();
+
+    const formData = {
+      id: document.getElementById('id').value,
+      kebie: document.getElementsByName('kebie')[0].value.trim(),
+      number: document.getElementsByName('number')[0].value.trim(),
+      cost: document.getElementsByName('cost')[0].value.trim(),
+      state: document.getElementsByName('state')[0].value.trim()
+    };
+
+    // 添加基本验证
+    if (!formData.id) {
+      alert('缺少病床ID');
+      return false;
+    }
+
+    // 修改为POST请求
+    axios({
+      url: 'http://localhost:8080/bed/updateBed',  // 移除URL中的id参数
+      method: 'post',  // 改为post方法
+      data: formData
+    }).then(response => {
+      if (response.data.code === 200) {
+        alert('修改成功');
+        window.location.href = 'list_bed.html';
+      } else {
+        alert('修改失败：' + (response.data.msg || '未知错误'));
+      }
+    }).catch(error => {
+      console.error('修改失败：', error);
+      alert('修改失败，请稍后重试');
+    });
+
+    return false;
+  }
+</script>
+

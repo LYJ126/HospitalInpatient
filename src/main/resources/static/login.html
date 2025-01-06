@@ -57,21 +57,20 @@
 </body>
 <script src="js/axios.min.js"></script>
 <script>
-    let username = document.forms["form1"]["username"].value
-    let password = document.forms["form1"]["password"].value
+    const username = document.forms["form1"]["username"].value.value.trim()
+    const password = document.forms["form1"]["password"].value.value.trim()
     function login() {
-        if (username == null) {
+        if (username === "") {
             alert("用户名不能为空，请确定后重新输入");
             document.forms["form1"]["username"].focus();
             return false;
         }
-        if (password == null) {
+        if (password === "") {
             alert("密码不能为空，请确定后重新输入");
             document.forms["form1"]["password"].focus();
             return false;
         }
-
-        return true;
+        return false;
     }
 </script>
 </html>

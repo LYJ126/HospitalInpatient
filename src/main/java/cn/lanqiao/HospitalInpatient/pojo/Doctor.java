@@ -1,33 +1,49 @@
 package cn.lanqiao.HospitalInpatient.pojo;
 
-
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
-@TableName("t_cms_hotel")
-public class Doctor {
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("doctor")
+public class Doctor implements Serializable {
 
-  private long id;
-  // 编号
-  private String number;
-  // 姓名
-  private String name;
-  // 性别
-  private String sex;
-  // 职称
-  private String zhicheng;
-  // 职务
-  private String zhiwu;
-  // 科别
-  private String kebie;
-  // 出生日期
-  private String birthtime;
-  // 工作日期
-  private String worktime;
+    private static final long serialVersionUID = 1L;
+
+//    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    @TableField("number")
+    private String number;
+
+    @TableField("name")
+    private String name;
+
+    @TableField("sex")
+    private String sex;
+
+    @TableField("zhicheng")
+    private String zhicheng;
+
+    @TableField("zhiwu")
+    private String zhiwu;
+
+    @TableField("kebie")
+    private String kebie;
+
+    @TableField("birthtime")
+    private String birthtime;
+
+    @TableField("worktime")
+    private String worktime;
+
 
 }

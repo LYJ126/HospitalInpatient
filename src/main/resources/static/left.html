@@ -21,7 +21,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20"></td>
-                <td class="STYLE1" onclick="showsubmenu(4)">医生信息管理</td>
+                <td class="STYLE1" onclick="showSubmenu(4)">医生信息管理</td>
               </tr>
             </table>
           </td>
@@ -69,7 +69,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20"></td>
-                <td class="STYLE1" onclick="showsubmenu(16)">病床信息管理</td>
+                <td class="STYLE1" onclick="showSubmenu(16)">病床信息管理</td>
               </tr>
             </table>
           </td>
@@ -117,7 +117,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20"></td>
-                <td class="STYLE1" onclick="showsubmenu(7)">病人信息管理</td>
+                <td class="STYLE1" onclick="showSubmenu(7)">病人信息管理</td>
               </tr>
             </table>
           </td>
@@ -165,7 +165,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20"></td>
-                <td class="STYLE1" onclick="showsubmenu(19)">收费信息管理</td>
+                <td class="STYLE1" onclick="showSubmenu(19)">收费信息管理</td>
               </tr>
             </table>
           </td>
@@ -213,7 +213,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20"></td>
-                <td class="STYLE1" onclick="showsubmenu(9)">统计分析</td>
+                <td class="STYLE1" onclick="showSubmenu(9)">统计分析</td>
               </tr>
             </table>
           </td>
@@ -261,7 +261,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20"></td>
-                <td class="STYLE1" onclick="showsubmenu(5)">系统管理</td>
+                <td class="STYLE1" onclick="showSubmenu(5)">系统管理</td>
               </tr>
             </table>
           </td>
@@ -283,7 +283,7 @@
                   <img src="images/closed.gif">
                 </td>
                 <td height="23">
-                  <a href="#" onclick="loginout();">退出系统</a>
+                  <a href="#" onclick="loginOut()" target="main">退出系统</a>
                 </td>
               </tr>
               </tbody>
@@ -298,7 +298,23 @@
     <td height="5" class="table-line-bottom"></td>
   </tr>
 </table>
-<script src="../js/left.js"></script> <!-- 假设把JavaScript代码放在script.js中 -->
+<script src="js/left.js"></script> <!-- 假设把JavaScript代码放在script.js中 -->
+<script>
+  function loginOut() {
+    top.window.location.href = "login.html";
+    console.log("TEST")
+    return false;
+  }
+
+  function showSubmenu(sid) {
+    const whichEl = document.getElementById("submenu" + sid);
+    if (whichEl.style.display === "none") {
+      whichEl.style.display = "";
+    } else {
+      whichEl.style.display = "none";
+    }
+  }
+</script> <!-- 假设把JavaScript代码放在script.js中 -->
 </body>
 
 </html>

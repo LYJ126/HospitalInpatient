@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>修改教师信息</title>
+    <title>修改医生信息</title>
     <link rel="stylesheet" type="text/css" href="../../css/doctor/modifyuser.css"> <!-- 假设把对应样式提取到styles.css文件中 -->
+    <script src="../../js/axios.min.js"></script>
 </head>
 
 <body>
@@ -19,14 +20,14 @@
                             <img src="../../images/img2.gif" width="16" height="16">
                         </td>
                         <td width="98%" align="left" class="lan13b">
-                            教师管理 > 修改教师信息
+                            医生管理 > 修改医生信息
                         </td>
                     </tr>
                 </table>
                 <table width="100%" border="0" cellpadding="1" cellspacing="1" class="table-border margb5">
                     <tr>
                         <td width="14%" align="right" class="COLLECTION">
-                            编号：
+                            医生编号：
                         </td>
                         <td width="36%" align="left" class="even padl5">
                             <input type="text" name="number" maxlength="32" class="inputnormal" value="">
@@ -106,5 +107,68 @@
     </table>
 </form>
 </body>
+<script>
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        var id = getParameterByName('id');
+        if (id) {
+            axios.get('/doctor/getById/' + id)
+                .then(function (response) {
+                    var data = response.data.data;
+                    document.getElementById('id').value = data.id;
+                    document.querySelector('input[name="number"]').value = data.number;
+                    document.querySelector('input[name="name"]').value = data.name;
+                    document.querySelector('input[name="sex"]').value = data.sex;
+                    document.querySelector('input[name="zhicheng"]').value = data.zhicheng;
+                    document.querySelector('input[name="zhiwu"]').value = data.zhiwu;
+                    document.querySelector('input[name="kebie"]').value = data.kebie;
+                    document.querySelector('input[name="birthtime"]').value = data.birthtime;
+                    document.querySelector('input[name="worktime"]').value = data.worktime;
+                })
+                .catch(function (error) {
+                    console.error('There was an error!', error);
+                    alert('无法获取医生信息，请稍后再试。');
+                });
+        }
+    });
+
+
+
+    function checkform() {
+        // 这里可以添加表单验证逻辑
+        return true;
+    }
+
+    document.querySelector('form[name="addForm"]').onsubmit = function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        var data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        axios.put('/doctor/update', data)
+            .then(function (response) {
+                if (response.data.code === 1) {
+                    alert('医生信息更新成功');
+                    window.location.href = 'list_user.html'; // 假设这是返回列表页的链接
+                } else {
+                    alert('更新失败: ' + response.data.message);
+                }
+            })
+            .catch(function (error) {
+                console.error('There was an error!', error);
+                alert('医生信息更新失败');
+            });
+    };
+
+</script>
 
 </html>
