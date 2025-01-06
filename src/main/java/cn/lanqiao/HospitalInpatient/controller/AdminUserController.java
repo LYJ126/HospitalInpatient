@@ -42,8 +42,8 @@ public class AdminUserController {
             log.info("用户登录成功，用户名: {}", user);
             // 设置Cookie
             Cookie usernameCookie = new Cookie("adminUsername", user.getUsername());
-//            usernameCookie.setMaxAge(60 * 60 * 24); // 设置Cookie的过期时间为1天
             usernameCookie.setPath("/"); // 设置Cookie的路径为根路径
+//            usernameCookie.setMaxAge(60 * 60 * 24); // 设置Cookie的过期时间为1天
             response.addCookie(usernameCookie);
 
             return "redirect:/index.html";
