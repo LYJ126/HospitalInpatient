@@ -1,4 +1,4 @@
-package cn.lanqiao.HospitalInpatient.dto;
+package cn.lanqiao.HospitalInpatient.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CostDto {
+public class CostVo {
     // 科别
     private String kebie;
     // 病床号

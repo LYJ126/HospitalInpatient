@@ -1,6 +1,6 @@
 package cn.lanqiao.HospitalInpatient.controller;
 
-import cn.lanqiao.HospitalInpatient.pojo.Bed;
+import cn.lanqiao.HospitalInpatient.model.pojo.Bed;
 import cn.lanqiao.HospitalInpatient.service.BedService;
 import cn.lanqiao.HospitalInpatient.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;

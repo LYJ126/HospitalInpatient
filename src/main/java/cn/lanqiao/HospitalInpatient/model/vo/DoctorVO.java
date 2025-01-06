@@ -1,4 +1,4 @@
-package cn.lanqiao.HospitalInpatient.vo;
+package cn.lanqiao.HospitalInpatient.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

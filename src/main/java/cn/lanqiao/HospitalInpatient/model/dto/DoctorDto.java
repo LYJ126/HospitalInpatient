@@ -1,4 +1,4 @@
-package cn.lanqiao.HospitalInpatient.dto;
+package cn.lanqiao.HospitalInpatient.model.dto;
 
 
 import lombok.Data;

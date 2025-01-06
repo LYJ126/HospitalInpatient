@@ -1,9 +1,8 @@
 package cn.lanqiao.HospitalInpatient.service.impl;
 
 import cn.lanqiao.HospitalInpatient.mapper.CostMapper;
-import cn.lanqiao.HospitalInpatient.pojo.Bed;
 import cn.lanqiao.HospitalInpatient.service.CostService;
-import cn.lanqiao.HospitalInpatient.vo.CostVo;
+import cn.lanqiao.HospitalInpatient.model.vo.CostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,12 @@ public class CostServiceImpl implements CostService {
     }
 
     @Override
+    public List<CostVo> select(String name) {
+        List<CostVo> select = costMapper.select(name);
+        return select;
+    }
+
+    @Override
     public int insert(CostVo costVo) {
         List<CostVo> costVos = costMapper.selectAll();
         for (CostVo vo : costVos) {
@@ -31,12 +36,13 @@ public class CostServiceImpl implements CostService {
     }
 
     @Override
-    public int deleteBed(int id) {
+    public int delete(int id) {
         return 0;
     }
 
     @Override
-    public int updateBed(Bed bed) {
+    public int update(CostVo costVo) {
         return 0;
     }
+
 }

@@ -1,15 +1,13 @@
 package cn.lanqiao.HospitalInpatient.controller;
 
 
-import cn.lanqiao.HospitalInpatient.dto.DoctorDto;
-import cn.lanqiao.HospitalInpatient.pojo.Doctor;
-import cn.lanqiao.HospitalInpatient.result.PageResult;
+import cn.lanqiao.HospitalInpatient.model.dto.DoctorDto;
+import cn.lanqiao.HospitalInpatient.model.pojo.Doctor;
 import cn.lanqiao.HospitalInpatient.result.Result;
 import cn.lanqiao.HospitalInpatient.service.IDoctorService;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResultUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

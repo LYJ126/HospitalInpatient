@@ -2,7 +2,7 @@ package cn.lanqiao.HospitalInpatient.controller;
 
 import cn.lanqiao.HospitalInpatient.service.CostService;
 import cn.lanqiao.HospitalInpatient.utils.ResponseUtils;
-import cn.lanqiao.HospitalInpatient.vo.CostVo;
+import cn.lanqiao.HospitalInpatient.model.vo.CostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +18,25 @@ public class CostController {
     public ResponseUtils<List<CostVo>> selectAll(){
         try {
             List<CostVo> select = costService.selectAll();
-            if (select == null || select.isEmpty()){// 增加空列表检查
-                //查询为空
+            if (select == null || select.isEmpty()){
+                // 增加空列表检查
+                return new ResponseUtils<>(304,"暂无查询数据");
+            }else {
+                //查询成功
+                return new ResponseUtils<>(200,"查询成功",select);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseUtils<>(500,"查询收费信息失败：" + e.getMessage());
+        }
+    }
+
+    @GetMapping("{name}")
+    public ResponseUtils<List<CostVo>> select(@RequestBody String name){
+        try {
+            List<CostVo> select = costService.select(name);
+            if (select == null || select.isEmpty()){
+                // 增加空列表检查
                 return new ResponseUtils<>(304,"暂无查询数据");
             }else {
                 //查询成功

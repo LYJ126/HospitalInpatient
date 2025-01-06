@@ -2,7 +2,7 @@ package cn.lanqiao.HospitalInpatient.service.impl;
 
 
 import cn.lanqiao.HospitalInpatient.mapper.BedMapper;
-import cn.lanqiao.HospitalInpatient.pojo.Bed;
+import cn.lanqiao.HospitalInpatient.model.pojo.Bed;
 import cn.lanqiao.HospitalInpatient.service.BedService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

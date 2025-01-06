@@ -1,6 +1,6 @@
 package cn.lanqiao.HospitalInpatient.mapper;
 
-import cn.lanqiao.HospitalInpatient.pojo.Bed;
+import cn.lanqiao.HospitalInpatient.model.pojo.Bed;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

@@ -1,4 +1,4 @@
-package cn.lanqiao.HospitalInpatient.pojo;
+package cn.lanqiao.HospitalInpatient.model.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

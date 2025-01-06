@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Cookie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import cn.lanqiao.HospitalInpatient.pojo.Admin;
+import cn.lanqiao.HospitalInpatient.model.pojo.Admin;
 import cn.lanqiao.HospitalInpatient.service.AdminUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import jakarta.servlet.http.HttpSession;

@@ -1,6 +1,6 @@
 package cn.lanqiao.HospitalInpatient.service;
 
-import cn.lanqiao.HospitalInpatient.pojo.Bed;
+import cn.lanqiao.HospitalInpatient.model.pojo.Bed;
 
 import java.util.List;
 
