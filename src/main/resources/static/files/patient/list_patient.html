@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="GBK">
-  <title>病床利用率查询</title>
+  <title>病人信息列表</title>
   <style type="TEXT/CSS">
     A:LINK {
       COLOR: blue;
@@ -27,16 +27,11 @@
 
 <body bgcolor="#ffffff">
 <br>
-<form id="searchForm" action="list_bedinfo.html" method="post">
+<form id="searchForm" action="list_patient.html" method="post">
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
     <tr>
       <td align="center" class="lan13b">
-        科别： <input id="kebie" name="kebie" value="">
-        医师： <input id="doctor" name="doctor" value="">
-        日期：
-        <input class="Wdate" type="text" id="sksjs" name="sksjs" maxlength="32">
-        --
-        <input class="Wdate" type="text" id="sksje" name="sksje" maxlength="32">
+        病人姓名： <input id="brxm" name="brxm" value="">
         <input type="submit" name="button" value="查询" class="button">
       </td>
     </tr>
@@ -48,17 +43,24 @@
       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
         <tr>
           <td width="2%" align="right" class="pad05">
-            <img src="../../static/images/img2.gif" width="16" height="16">
+            <img src="../../images/img2.gif" width="16" height="16">
           </td>
           <td width="98%" align="left" class="lan13b">
-            统计查询 > 病床利用率查询
+            病人管理 > 病人信息管理
+          </td>
+        </tr>
+      </table>
+      <table border="0" cellspacing="0" cellpadding="0" class="margb5">
+        <tr>
+          <td width="61" align="left" class="padr5">
+            <img src="../../images/pic-13.jpg" onclick="window.location.href='addpatient.html'">
           </td>
         </tr>
       </table>
       <table width="100%" border="0" cellspacing="1" cellpadding="0" class="table-border margb5">
         <tr>
           <td colspan="11" align="left" class="tabbg">
-            <img src="../../static/images/main_pic_1.gif" align="absmiddle" width="16" height="16">
+            <img src="../../images/main_pic_1.gif" align="absmiddle" width="16" height="16">
             &nbsp;
             <span class="lan13b"></span>
           </td>
@@ -91,10 +93,13 @@
           <th width="5%" nowrap class="COLLECTION">
             出院日期
           </th>
+          <th width="7%" nowrap class="COLLECTION">
+            管理
+          </th>
         </tr>
         <!-- 此处数据行将通过JavaScript动态插入 -->
       </table>
-      <form id="pageForm" action="list_bedinfo.html" method="GET">
+      <form id="pageForm" action="list_patient.html" method="GET">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td colspan="11" align="right" class="tabbg hei12">
@@ -103,13 +108,6 @@
           </tr>
         </table>
       </form>
-    </td>
-  </tr>
-</table>
-<table align="center">
-  <tr>
-    <td align="center">
-      <input type="button" onclick="window.print();" value="打印" class="button">
     </td>
   </tr>
 </table>
