@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>用户信息列表</title>
+  <link rel="stylesheet" type="text/css" href="../../css/doctor/list_user.css">
+  <style>
+    A:LINK {
+      COLOR: blue;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: none;
+    }
+
+    A:VISITED {
+      COLOR: blue;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: none;
+    }
+
+    A:HOVER {
+      COLOR: red;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: underline;
+    }
+  </style>
+</head>
+
+<body bgcolor="#ffffff">
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
+  <tr>
+    <td valign="top" align="left" class="pad5">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+        <tr>
+          <td width="2%" align="right" class="pad05">
+            <img src="../../images/img2.gif" width="16" height="16">
+          </td>
+          <td width="98%" align="left" class="lan13b">医生管理 > 医生信息管理</td>
+        </tr>
+      </table>
+      <form id="searchForm" action="list_user.html" method="get">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+          <tr>
+            <td align="center" class="lan13b">
+              医生姓名： <input name="ysxm" id="ysxm" value="" maxlength="32" />
+              <input type="submit" name="button" value="查询" class="button">
+            </td>
+          </tr>
+        </table>
+      </form>
+      <table border="0" cellspacing="0" cellpadding="0" class="margb5">
+        <tr>
+          <td width="61" align="left" class="padr5">
+            <img src="../../images/pic-13.jpg" alt="添加" onclick="window.location.href='adduser.html'">
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="1" cellpadding="0" class="table - border margb5">
+        <tr>
+          <td colspan="12" align="left" class="tabbg">
+            <img src="../../images/main_pic_1.gif" align="absmiddle" width="16" height="16">&nbsp;<span class="lan13b"></span>
+          </td>
+        </tr>
+        <tr>
+          <th width="3%" nowrap class="COLLECTION">
+            编号
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            医生编号
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            姓名
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            性别
+          </th>
+          <th width="5%" nowrap class="COLLECTION">职称</th>
+          <th width="5%" nowrap class="COLLECTION">职务</th>
+          <th width="7%" nowrap class="COLLECTION">
+            科别
+          </th>
+          <th width="7%" nowrap class="COLLECTION">
+            出生日期
+          </th>
+          <th width="7%" nowrap class="COLLECTION">
+            工作日期
+          </th>
+          <th width="7%" nowrap class="COLLECTION">
+            管理
+          </th>
+        </tr>
+        <!-- 这里后续通过JavaScript动态添加数据行 -->
+        <tbody id="doctorTableBody"></tbody>
+      </table>
+
+      <form action="list_user.html" method="get">
+        <tr>
+          <td colspan="11" align="right" class="tabbg hei12">
+            <!-- 这里通过JavaScript动态控制分页链接显示 -->
+          </td>
+        </tr>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<script src="../../js/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 页面加载完成后自动发起请求
+    fetchData();
+
+    // 表单提交时也发起请求
+    document.getElementById('searchForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // 阻止表单默认提交行为
+
+      const doctorName = document.getElementById('ysxm').value.trim();
+
+      // 构建查询参数
+      let queryParams = '';
+      if (doctorName) {
+        queryParams = `name=${encodeURIComponent(doctorName)}`;
+      }
+
+      // 发送 axios 请求
+      axios({
+        url: `http://localhost:8080/doctor/selectDoctor?${queryParams}`,
+        method: "get"
+      }).then(response => {
+        handleResponse(response);
+      }).catch(error => {
+        handleError(error);
+      });
+    });
+  });
+
+  function fetchData() {
+    // 默认查询参数可以为空
+    const defaultQueryParams = '';
+
+    axios({
+      url: `http://localhost:8080/doctor/selectDoctor?${defaultQueryParams}`,
+      method: "get"
+    }).then(response => {
+      handleResponse(response);
+    }).catch(error => {
+      handleError(error);
+    });
+  }
+
+
+  function handleResponse(response) {
+    const contentType = response.headers['content-type'];
+    console.log(typeof contentType)
+    console.log(contentType)
+    if (contentType.includes('application/json')) {
+      console.log('处理JSON数据:', response.data);
+      // 提取后端返回对象中的data数组
+      const data = response.data.data;
+      console.log(data)
+      // 在这里动态添加数据行到表格中
+      populateTable(data);
+    } else if (contentType.includes('application/xml')) {
+      // 处理XML数据，可能需要使用xml2js等库进行解析
+      console.log('处理XML数据:', response.data);
+    } else {
+      console.log('处理其他类型数据:', response.data);
+    }
+  }
+
+  function handleError(error) {
+    if (error.response && error.response.status === 406) {
+      console.log('HTTP 406错误：服务器返回的内容类型不被接受');
+    } else {
+      console.error('请求失败:', error);
+    }
+  }
+
+  function populateTable(data) {
+    // 假设 data 是一个包含医生信息的数组
+    const tableBody = document.getElementById('doctorTableBody');
+    // 清空现有表格内容
+    tableBody.innerHTML = '';
+
+    data.forEach((item, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${item.number}</td>
+      <td>${item.name}</td>
+      <td>${item.sex}</td>
+      <td>${item.zhicheng}</td>
+      <td>${item.zhiwu}</td>
+      <td>${item.kebie}</td>
+      <td>${item.birthtime}</td>
+      <td>${item.worktime}</td>
+      <td><a href="modifyuser.html?id=${item.id}">编辑</a> | <a href="deleteuser.html?id=${item.id}" onclick="deleteUser(${item.id})">删除</a></td>
+    `;
+      tableBody.appendChild(row);
+    });
+  }
+
+</script>

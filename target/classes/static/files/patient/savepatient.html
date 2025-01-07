@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="gb2312">
+  <title>患者信息操作</title>
+</head>
+
+<body>
+<form id="patientForm">
+  <label for="number">病床号：</label><input type="text" id="number" name="number" required><br>
+  <label for="kebie">科别：</label><input type="text" id="kebie" name="kebie" required><br>
+  <label for="name">患者姓名：</label><input type="text" id="name" name="name" required><br>
+  <label for="sex">性别：</label><input type="text" id="sex" name="sex" required><br>
+  <label for="chuyuan">出院情况：</label><input type="text" id="chuyuan" name="chuyuan" required><br>
+  <label for="age">年龄：</label><input type="text" id="age" name="age" required><br>
+  <label for="bingzheng">病症：</label><input type="text" id="bingzheng" name="bingzheng" required><br>
+  <label for="doctor">主治医生：</label><input type="text" id="doctor" name="doctor" required><br>
+  <label for="ruyuan">入院时间：</label><input type="text" id="ruyuan" name="ruyuan" required><br>
+  <input type="hidden" id="id" name="id" value="0"> <!-- 初始值设为0，代表新增操作，后续可根据情况修改 -->
+  <input type="submit" value="提交">
+</form>
+</body>
+
+</html>

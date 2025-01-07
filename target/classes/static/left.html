@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>医院管理系统</title>
+  <link rel="stylesheet" href="css/left.css">
+</head>
+
+<body>
+<table class="main-table" width="98%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="5" class="table-line-top"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="leftframetable" cellspacing="0" cellpadding="0" width="97%" align="right" border="0">
+        <tbody>
+        <tr>
+          <td height="25" class="left-tt-bg">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="20"></td>
+                <td class="STYLE1" onclick="showsubmenu(4)">医生信息管理</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="submenu4" class="submenu-table" cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tbody>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/doctor/list_user.html" target="main">医生信息查询</a>
+                </td>
+              </tr>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/doctor/adduser.html" target="main">医生信息添加</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-bottom"></td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-top"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="leftframetable" cellspacing="0" cellpadding="0" width="97%" align="right" border="0">
+        <tbody>
+        <tr>
+          <td height="25" class="left-tt-bg">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="20"></td>
+                <td class="STYLE1" onclick="showsubmenu(16)">病床信息管理</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="submenu16" class="submenu-table" cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tbody>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/bed/list_bed.html" target="main">病床信息查询</a>
+                </td>
+              </tr>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/bed/addbed.html" target="main">病床信息添加</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-bottom"></td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-top"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="leftframetable" cellspacing="0" cellpadding="0" width="97%" align="right" border="0">
+        <tbody>
+        <tr>
+          <td height="25" class="left-tt-bg">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="20"></td>
+                <td class="STYLE1" onclick="showsubmenu(7)">病人信息管理</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="submenu7" class="submenu-table" cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tbody>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/patient/list_patient.html" target="main">病人信息查询</a>
+                </td>
+              </tr>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/patient/addpatient.html" target="main">病人信息添加</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-bottom"></td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-top"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="leftframetable" cellspacing="0" cellpadding="0" width="97%" align="right" border="0">
+        <tbody>
+        <tr>
+          <td height="25" class="left-tt-bg">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="20"></td>
+                <td class="STYLE1" onclick="showsubmenu(19)">收费信息管理</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="submenu19" class="submenu-table" cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tbody>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/cost/list_cost.html" target="main">收费信息查询</a>
+                </td>
+              </tr>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/cost/addcost.html" target="main">收费信息添加</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-bottom"></td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-top"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="leftframetable" cellspacing="0" cellpadding="0" width="97%" align="right" border="0">
+        <tbody>
+        <tr>
+          <td height="25" class="left-tt-bg">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="20"></td>
+                <td class="STYLE1" onclick="showsubmenu(9)">统计分析</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="submenu9" class="submenu-table" cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tbody>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/query/list_bedinfo.html" target="main">病床利用率查询</a>
+                </td>
+              </tr>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="files/query/list_costinfo.html" target="main">收费明细查询</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-bottom"></td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-top"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="leftframetable" cellspacing="0" cellpadding="0" width="97%" align="right" border="0">
+        <tbody>
+        <tr>
+          <td height="25" class="left-tt-bg">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="20"></td>
+                <td class="STYLE1" onclick="showsubmenu(5)">系统管理</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="submenu5" class="submenu-table" cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tbody>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="pwd.html" target="main">修改密码</a>
+                </td>
+              </tr>
+              <tr>
+                <td width="2%">
+                  <img src="images/closed.gif">
+                </td>
+                <td height="23">
+                  <a href="#" onclick="loginout();">退出系统</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="5" class="table-line-bottom"></td>
+  </tr>
+</table>
+<script src="../js/left.js"></script> <!-- 假设把JavaScript代码放在script.js中 -->
+</body>
+
+</html>

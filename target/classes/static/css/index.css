@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#frame-container {
+    width: 100%;
+    height: calc(100vh - 59px); /* 根据整体页面高度减去顶部框架高度来设置高度 */
+    overflow: hidden; /* 避免内部iframe内容超出容器出现滚动条等问题 */
+    margin-top: -5px;
+}

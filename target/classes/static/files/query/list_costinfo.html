@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="GBK">
+  <title>病人花费明细</title>
+  <style type="TEXT/CSS">
+    A:LINK {
+      COLOR: blue;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: none;
+    }
+
+    A:VISITED {
+      COLOR: blue;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: none;
+    }
+
+    A:HOVER {
+      COLOR: red;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: underline;
+    }
+  </style>
+  <script type="text/javascript" src="../../calendar/WdatePicker.js"></script> <!-- 引入日期选择插件，需确保路径正确 -->
+</head>
+
+<body bgcolor="#ffffff">
+<br>
+<form id="searchForm" action="list_costinfo.html" method="post">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+    <tr>
+      <td align="center" class="lan13b">
+        病人姓名： <input id="doctor" name="doctor" value="">
+        日期：
+        <input class="Wdate" type="text" id="sksjs" name="sksjs" maxlength="32">
+        --
+        <input class="Wdate" type="text" id="sksje" name="sksje" maxlength="32">
+        <input type="submit" name="button" value="查询" class="button">
+      </td>
+    </tr>
+  </table>
+</form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
+  <tr>
+    <td valign="top" align="left" class="pad5">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+        <tr>
+          <td width="2%" align="right" class="pad05">
+            <img src="../../images/img2.gif" width="16" height="16">
+          </td>
+          <td width="98%" align="left" class="lan13b">
+            统计查询 > 收费明细查询
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="1" cellpadding="0" class="table-border margb5">
+        <tr>
+          <td colspan="11" align="left" class="tabbg">
+            <img src="../../images/main_pic_1.gif" align="absmiddle" width="16" height="16">
+            &nbsp;
+            <span class="lan13b"></span>
+          </td>
+        </tr>
+        <tr>
+          <th width="3%" nowrap class="COLLECTION">
+            科别
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            病床号
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            病人姓名
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            收费项目
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            单价
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            数量
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            金额
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            日期
+          </th>
+        </tr>
+        <!-- 此处数据行将通过JavaScript动态插入 -->
+      </table>
+      <form id="pageForm" action="list_costinfo.html" method="GET">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td colspan="11" align="right" class="tabbg hei12">
+              <!-- 分页链接将通过JavaScript动态生成 -->
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+<table align="center">
+  <tr>
+    <td align="center">
+      <input type="button" onclick="window.print();" value="打印" class="button">
+    </td>
+  </tr>
+</table>
+</body>
+
+</html>

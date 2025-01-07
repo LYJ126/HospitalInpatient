@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>添加医生信息</title>
+  <link rel="stylesheet" type="text/css" href="../../css/doctor/adduser.css">
+  <!-- 引入 WdatePicker -->
+  <script src="https://cdn.jsdelivr.net/npm/my97datepicker/WdatePicker.js"></script>
+  <script src="../../js/axios.min.js"></script>
+  <style>
+    /* 添加样式 */
+    .table-border {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .table-border td {
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .COLLECTION {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .inputnormal {
+      width: 200px;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .button {
+      padding: 6px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    .even {
+      background-color: #fff;
+    }
+
+    .padl5 {
+      padding-left: 5px;
+    }
+
+    .lan13b {
+      color: #0066cc;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .dqbg {
+      background-color: #f9f9f9;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+<form action="saveadd.html" method="post" name="addForm">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
+    <tr>
+      <td valign="top" align="left" class="pad5">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+          <tr>
+            <td width="2%" align="right" class="pad05">
+              <img src="../../images/img2.gif" width="16" height="16">
+            </td>
+            <td width="98%" align="left" class="lan13b">
+              医生管理 > 添加医生信息
+            </td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellpadding="1" cellspacing="1" class="table-border margb5">
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              编号：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="number" maxlength="32" class="inputnormal" value="">
+              <font color="red">*</font>
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              姓名：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="name" maxlength="32" class="inputnormal" value=""><font color="red">*</font>
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              性别：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="sex" maxlength="32" class="inputnormal" value="">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              职称：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="zhicheng" maxlength="32" class="inputnormal" value="">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              职务：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="zhiwu" maxlength="32" class="inputnormal" value="">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              科别：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="kebie" maxlength="32" class="inputnormal" value="">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              出生日期：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input class="Wdate" type="text" name="birthtime" maxlength="32" onfocus="WdatePicker({readOnly:true})" />
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              工作日期：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input class="Wdate" type="text" name="worktime" maxlength="32" onfocus="WdatePicker({readOnly:true})" />
+            </td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="50%" align="right" class="padr5">
+              <input type="submit" onclick="return checkform();" name="button" value="保 存" class="button">
+            </td>
+            <td width="50%" align="left" class="padl5">
+              <input name="button1" type="button" class="button" onClick="history.go(-1);" value="返 回">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<script>
+  // 表单验证函数
+  function checkform() {
+    // 获取表单数据
+    const number = document.querySelector('input[name="number"]').value.trim();
+    const name = document.querySelector('input[name="name"]').value.trim();
+    const sex = document.querySelector('input[name="sex"]').value.trim();
+    const zhicheng = document.querySelector('input[name="zhicheng"]').value.trim();
+    const zhiwu = document.querySelector('input[name="zhiwu"]').value.trim();
+    const kebie = document.querySelector('input[name="kebie"]').value.trim();
+    const birthtime = document.querySelector('input[name="birthtime"]').value.trim();
+    const worktime = document.querySelector('input[name="worktime"]').value.trim();
+
+    // 验证必填字段
+    if (!number) {
+      alert('请输入编号');
+      return false;
+    }
+    if (!name) {
+      alert('请输入姓名');
+      return false;
+    }
+
+    // 构造请求数据
+    const doctorData = {
+      number: number,
+      name: name,
+      sex: sex,
+      zhicheng: zhicheng,
+      zhiwu: zhiwu,
+      kebie: kebie,
+      birthtime: birthtime,
+      worktime: worktime
+    };
+
+    console.log('发送的数据：', doctorData);
+
+    // 发送请求
+    axios({
+      url: 'http://localhost:8080/doctor/add',
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      data: JSON.stringify(doctorData)  // 将对象转换为 JSON 字符串
+    }).then(response => {
+      // console.log('完整响应数据：', response);
+      console.log('响应数据：', response.data);
+
+      if (response.data.code === 1) {
+        alert('添加成功');
+        window.location.href = 'list_user.html';
+      } else {
+        // 使用 msg 字段而不是 message
+        alert(response.data.msg || '添加失败');
+      }
+    }).catch(error => {
+      console.error('添加失败：', error);
+      if (error.response) {
+        console.error('错误详情：', error.response.data);
+      }
+      alert('添加失败，请检查输入数据');
+    });
+
+    return false; // 阻止表单默认提交
+  }
+
+  // 日期选择器初始化
+  if (typeof WdatePicker === 'undefined') {
+    // 如果没有引入 WdatePicker，添加一个简单的日期输入提示
+    const dateInputs = document.querySelectorAll('.Wdate');
+    dateInputs.forEach(input => {
+      input.type = 'date';
+      input.onfocus = null; // 移除 onfocus 事件以避免报错
+    });
+  }
+</script>
+</body>
+
+</html>

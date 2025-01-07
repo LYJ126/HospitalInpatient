@@ -1,0 +1,78 @@
+body {
+    background-color: #03A8F6;
+    margin-top: 0;
+}
+
+.main-table {
+    width: 100%;
+}
+
+.top-logo {
+    background: url(../images/top_logo.jpg) no-repeat;
+    width :194px;
+    height :60px;
+}
+
+.top-bg {
+    background: url(../images/top_bg.jpg) no-repeat;
+}
+
+.top-link {
+    text-decoration: none;
+    color: inherit; /* 可以根据实际需求设置具体颜色 */
+}
+
+.topbar {
+    /* 可以添加针对topbar类的样式，比如字体、颜色等 */
+}
+
+.subbg {
+    /* 可以添加该类对应的样式属性 */
+}
+
+.bottom-bg {
+    background: url(../images/top_bg.jpg);
+    background-color: #1F3A65;
+}
+<!--
+table{
+    font-size:12px;
+}
+BODY {
+    FONT-SIZE: 12px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+A {
+    TEXT-DECORATION: none;
+    COLOR: #1E5494; font-weight:bold;
+}
+A:link {
+    COLOR: #1E5494; font-weight:bold;
+}
+A:visited {
+    COLOR: #1E5494
+}
+A:hover {
+    COLOR: #1E5494
+}
+A:active {
+    COLOR: #1E5494
+}
+.topbar {background:url(../images/top_tt_bg.gif) no-repeat;
+    COLOR: #1E5494
+}
+.topbar A:link {
+    COLOR: #1E5494
+}
+.topbar A:visited {
+    COLOR: #1E5494
+}
+.topbar A:hover {
+
+    COLOR: #8B0000; TEXT-DECORATION: none
+}
+.STYLE2 {color: #111111; }
+.STYLE3 {color: #993399;}
+.STYLE4 {color: #FFFFFF}
+-->

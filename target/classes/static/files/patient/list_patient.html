@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="GBK">
+  <title>病人信息列表</title>
+  <style type="TEXT/CSS">
+    A:LINK {
+      COLOR: blue;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: none;
+    }
+
+    A:VISITED {
+      COLOR: blue;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: none;
+    }
+
+    A:HOVER {
+      COLOR: red;
+      FONT-SIZE: 12PT;
+      TEXT-DECORATION: underline;
+    }
+  </style>
+</head>
+
+<body bgcolor="#ffffff">
+<br>
+<form id="searchForm" action="list_patient.html" method="post">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+    <tr>
+      <td align="center" class="lan13b">
+        病人姓名： <input id="brxm" name="brxm" value="">
+        <input type="submit" name="button" value="查询" class="button">
+      </td>
+    </tr>
+  </table>
+</form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
+  <tr>
+    <td valign="top" align="left" class="pad5">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+        <tr>
+          <td width="2%" align="right" class="pad05">
+            <img src="../../images/img2.gif" width="16" height="16">
+          </td>
+          <td width="98%" align="left" class="lan13b">
+            病人管理 > 病人信息管理
+          </td>
+        </tr>
+      </table>
+      <table border="0" cellspacing="0" cellpadding="0" class="margb5">
+        <tr>
+          <td width="61" align="left" class="padr5">
+            <img src="../../images/pic-13.jpg" onclick="window.location.href='addpatient.html'">
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="1" cellpadding="0" class="table-border margb5">
+        <tr>
+          <td colspan="11" align="left" class="tabbg">
+            <img src="../../images/main_pic_1.gif" align="absmiddle" width="16" height="16">
+            &nbsp;
+            <span class="lan13b"></span>
+          </td>
+        </tr>
+        <thead>
+        <tr align="left">
+          <th width="3%" nowrap class="COLLECTION">
+            科别
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            病床号
+          </th>
+          <th width="3%" nowrap class="COLLECTION">
+            病人姓名
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            病人性别
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            病人年龄
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            病症
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            主治医生
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            入院日期
+          </th>
+          <th width="5%" nowrap class="COLLECTION">
+            出院日期
+          </th>
+          <th width="7%" nowrap class="COLLECTION">
+            管理
+          </th>
+        </tr>
+        </thead>
+        <tbody id="patientTableBody">
+        <!-- 此处数据行将通过JavaScript动态插入 -->
+        </tbody>
+      </table>
+      <form id="pageForm" action="list_patient.html" method="GET">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td colspan="11" align="right" class="tabbg hei12">
+              <!-- 分页链接将通过JavaScript动态生成 -->
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+
+</html>
+<script src="../../js/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 页面加载完成后自动发起请求
+    fetchData();
+
+    // 表单提交时也发起请求
+    document.getElementById('searchForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // 阻止表单默认提交行为
+
+      const patientName = document.getElementById('brxm').value.trim();
+
+      // 构建查询参数
+      let queryParams = '';
+      if (patientName) {
+        queryParams = `name=${encodeURIComponent(patientName)}`;
+      }
+
+      // 清空表格数据
+      clearTableData();
+
+      // 发送 axios 请求
+      axios({
+        url: `http://localhost:8080/patient/getAllPatients?${queryParams}`,
+        method: "get"
+      }).then(response => {
+        handleResponse(response);
+      }).catch(error => {
+        handleError(error);
+      });
+    });
+  });
+
+  function fetchData() {
+    // 发送 axios 请求获取全部病人数据
+    axios({
+      url: "http://localhost:8080/patient/getAllPatients",
+      method: "get"
+    }).then(response => {
+      handleResponse(response);
+    }).catch(error => {
+      handleError(error);
+    });
+  }
+
+  function handleResponse(response) {
+    // 处理响应数据，动态插入到表格中
+    const data = response.data.data;
+    const tableBody = document.getElementById('patientTableBody');
+
+    data.forEach(patient => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td nowrap class="COLLECTION">${patient.kebie}</td>
+        <td nowrap class="COLLECTION">${patient.number}</td>
+        <td nowrap class="COLLECTION">${patient.name}</td>
+        <td nowrap class="COLLECTION">${patient.sex}</td>
+        <td nowrap class="COLLECTION">${patient.age}</td>
+        <td nowrap class="COLLECTION">${patient.bingzheng}</td>
+        <td nowrap class="COLLECTION">${patient.doctor}</td>
+        <td nowrap class="COLLECTION">${patient.ruyuan}</td>
+        <td nowrap class="COLLECTION">${patient.chuyuan}</td>
+        <td nowrap class="COLLECTION">
+          <a href="modifyuser.html?id=${patient.id}">编辑</a>
+          <a href="deletepatient.html?id=${patient.id}">删除</a>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  function handleError(error) {
+    console.error('Error fetching data:', error);
+  }
+
+  function clearTableData() {
+    // 清空表格中的所有数据行
+    const tableBody = document.getElementById('patientTableBody');
+    if (tableBody) {
+      tableBody.innerHTML = ''; // 清空 tbody 内容
+    }
+  }
+</script>

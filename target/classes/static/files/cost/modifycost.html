@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>修改病人信息</title>
+<!--  <link rel="stylesheet" type="text/css" href="../../static/images/css1/ioa.css"> &lt;!&ndash; 确保此路径能正确加载样式文件 &ndash;&gt;-->
+  <script type="text/javascript" src="../../calendar/WdatePicker.js"></script> <!-- 引入日期选择插件，需确保路径正确 -->
+  <script src="../../js/cost/modifycost.js"></script> <!-- 引入外部JavaScript文件，用于实现具体业务逻辑 -->
+</head>
+
+<body>
+<FORM id="addForm" action="savecost.html" method="post"> <!-- 假设处理表单提交的后端页面为savecost.html，按需调整 -->
+  <input type="hidden" id="id" name="id">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
+    <tr>
+      <td valign="top" align="left" class="pad5">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+          <tr>
+            <td width="2%" align="right" class="pad05">
+              <img src="../../images/img2.gif" width="16" height="16">
+            </td>
+            <td width="98%" align="left" class="lan13b">
+              收费管理 > 修改收费信息
+            </td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellpadding="1" cellspacing="1" class="table-border margb5">
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              科别：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="kebie" maxlength="32" class="inputnormal">
+              <font color="red">*</font>
+            </td>
+          </tr>
+
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              病床号：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="number" maxlength="32" class="inputnormal">
+              <font color="red">*</font>
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              病人姓名：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="name" maxlength="32" class="inputnormal">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              收费项目：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="xiangmu" maxlength="32" class="inputnormal">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              单价：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="danjia" maxlength="32" class="inputnormal">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              数量：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="shuliang" maxlength="32" class="inputnormal">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              金额：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input type="text" name="jine" maxlength="32" class="inputnormal">
+            </td>
+          </tr>
+          <tr>
+            <td width="14%" align="right" class="COLLECTION">
+              日期：
+            </td>
+            <td width="36%" align="left" class="even padl5">
+              <input class="Wdate" type="text" name="riqi" maxlength="32">
+            </td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="50%" align="right" class="padr5">
+              <input type="submit" name="button" value="保 存" class="button">
+            </td>
+            <td width="50%" align="left" class="padl5">
+              <input name="button1" type="button" class="button" onClick="history.go(-1);" value="返 回">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</FORM>
+
+
+<br>
+<br>
+<br>
+<br>
+
+</body>
+
+</html>

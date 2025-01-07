@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>change</title>
+  <link rel="stylesheet" href="css/ioa.css"> <!-- 确保路径正确，对应原JSP中的ioa.css样式文件 -->
+  <script src="../js/pwd.js"></script> <!-- 引入外部JavaScript文件，用于实现业务逻辑 -->
+</head>
+
+<body>
+<center>
+  <form id="pwdForm" action="update_pwd.html" method="POST">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
+      <tr>
+        <td valign="top" align="left" class="pad5">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
+            <tr>
+              <td width="2%" align="right" class="pad05">
+                <img src="images/img2.gif" width="16" height="16">
+              </td>
+              <td width="98%" align="left" class="lan13b">密码修改</td>
+            </tr>
+          </table>
+          <table width="100%" border="0" cellpadding="1" cellspacing="1" class="table-border margb5">
+            <tr>
+              <td width="14%" align="right" class="COLLECTION">请输入原密码：</td>
+              <td width="36%" align="left" class="even padl5">
+                <input type="password" id="pwd1" name="pwd1" maxlength="32">
+              </td>
+            </tr>
+            <tr>
+              <td width="14%" align="right" class="COLLECTION">请输入新密码：</td>
+              <td width="36%" align="left" class="even padl5">
+                <input type="password" id="pwd2" name="pwd2" maxlength="32" class="inputnormal" value="">
+              </td>
+            </tr>
+            <tr>
+              <td width="14%" align="right" class="COLLECTION">确认新密码：</td>
+              <td width="36%" align="left" class="even padl5">
+                <input type="password" id="pwd3" name="pwd3" maxlength="32" class="inputnormal" value="">
+              </td>
+            </tr>
+          </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="50%" align="right" class="padr5">
+                <input type="submit" id="submitBtn" name="button" value="保 存" class="button">
+              </td>
+              <td width="50%" align="left" class="padl5">
+                <input name="button1" type="button" class="button" onClick="history.go(-1);" value="返 回">
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+</body>
+
+</html>
