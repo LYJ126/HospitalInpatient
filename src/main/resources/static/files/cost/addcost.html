@@ -117,5 +117,55 @@
 <br>
 
 </body>
+<script src="../../js/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('addForm');
 
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // 阻止表单默认提交
+
+      // 获取表单数据
+      const formData = {
+        kebie: form.kebie.value.trim(),
+        number: form.number.value.trim(),
+        name: form.name.value.trim(),
+        xiangmu: form.xiangmu.value.trim(),
+        danjia: form.danjia.value.trim(),
+        shuliang: form.shuliang.value.trim(),
+        jine: form.jine.value.trim(),
+        riqi: form.riqi.value.trim()
+      };
+      console.log(formData)
+      // 表单验证
+      if (!formData.kebie || !formData.number || !formData.name || !formData.xiangmu || !formData.danjia || !formData.shuliang || !formData.jine || !formData.riqi) {
+        alert('请输入完整信息！');
+        return;
+      }else {
+        // 发送请求
+        axios({
+          url: 'http://localhost:8080/costs',
+          method: 'post',
+          data: formData
+        }).then(response => {
+          if (response.data.code === 200) {
+            alert('添加成功！');
+            // 跳转到列表页面
+            window.location.href = 'list_cost.html';
+          } else {
+            alert(response.data.message || '添加失败！');
+          }
+        }).catch(error => {
+          console.error('添加异常：', error);
+          alert('添加异常，请稍后重试！');
+        });
+      }
+    });
+    // 为日期输入框添加日期选择功能，调用引入的WdatePicker.js插件提供的功能
+    const riqiInput = document.getElementsByName('riqi')[0];
+    riqiInput.onfocus = function () {
+      WdatePicker({ readOnly: true });
+    };
+  });
+</script>
 </html>

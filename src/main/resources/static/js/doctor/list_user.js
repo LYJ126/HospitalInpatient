@@ -1,18 +1,3 @@
-// 模拟数据（实际中需要通过AJAX请求后端接口获取真实数据）
-const mockData = [
-    {
-        id: 1,
-        number: "001",
-        name: "张三",
-        sex: "男",
-        zhicheng: "主任医师",
-        zhiwu: "科室主任",
-        kebie: "内科",
-        birthtime: "1980-01-01",
-        worktime: "2005-01-01"
-    },
-    // 可以添加更多模拟数据项
-];
 
 // 模拟查询函数（实际中要根据真实后端接口发送请求并处理响应）
 function queryData(ysxm) {

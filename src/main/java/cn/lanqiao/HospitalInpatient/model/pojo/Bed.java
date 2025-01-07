@@ -1,4 +1,4 @@
-package cn.lanqiao.HospitalInpatient.pojo;
+package cn.lanqiao.HospitalInpatient.model.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @TableName("bed")
 public class Bed {
   // ID
-  private long id;
+  private Integer id;
   // 科别
   private String kebie;
   // 病床号
@@ -20,5 +20,5 @@ public class Bed {
   private String cost;
   // 使用状态
   private String state;
-
+  private long isDelete;
 }
