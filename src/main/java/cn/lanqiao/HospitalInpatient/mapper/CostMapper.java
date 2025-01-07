@@ -1,5 +1,6 @@
 package cn.lanqiao.HospitalInpatient.mapper;
 
+import cn.lanqiao.HospitalInpatient.model.pojo.Cost;
 import cn.lanqiao.HospitalInpatient.model.vo.CostVo;
 import org.apache.ibatis.annotations.*;
 
@@ -9,11 +10,19 @@ import java.util.List;
 public interface CostMapper {
     //查询所有收费信息
     @Select("select * from cost")
-    List<CostVo> selectAll();
+    List<Cost> selectAll();
 
-    //查询指定收费信息
+    //根据名字查询
     @Select("select * from cost where name = #{name}")
-    List<CostVo> select(String name);
+    List<Cost> selectByName(String name);
+
+    //根据id查询
+    @Select("select * from cost where id = #{id}")
+    List<Cost> selectById(int id);
+
+    //查询所有无id收费信息
+    @Select("select kebie, number, name, xiangmu, danjia, shuliang, jine, riqi from cost")
+    List<CostVo> selectNoId();
 
     //增加收费信息
     @Insert("insert into cost values(null, #{kebie}, #{number}, #{name}, #{xiangmu}, #{danjia}, #{shuliang}, #{jine}, #{riqi})")
@@ -25,5 +34,5 @@ public interface CostMapper {
 
     //修改收费信息
     @Update("update cost set kebie = #{kebie}, number = #{number}, name = #{name}, xiangmu = #{xiangmu}, danjia = #{danjia}, shuliang = #{shuliang}, jine = #{jine}, riqi = #{riqi} where id = #{id}")
-    int update(CostVo costVo);
+    int update(Cost cost);
 }

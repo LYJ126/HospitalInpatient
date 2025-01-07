@@ -114,6 +114,53 @@
     </td>
   </tr>
 </table>
+<!-- 弹窗：修改收费信息 -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>修改收费信息</h2>
+    <!-- 修改表单 -->
+    <form id="editForm">
+      <div class="form-group">
+        <label for="editDepartment">科别:</label>
+        <input class="updateValue" type="text" id="editDepartment" name="kebie">
+      </div>
+      <div class="form-group">
+        <label for="editBedNo">病床号:</label>
+        <input class="updateValue" type="text" id="editBedNo" name="number">
+      </div>
+      <div class="form-group">
+        <label for="edita">病人姓名:</label>
+        <input class="updateValue" type="text" id="edita" name="name">
+      </div>
+      <div class="form-group">
+        <label for="editb">收费项目:</label>
+        <input class="updateValue" type="text" id="editb" name="xiangmu">
+      </div>
+      <div class="form-group">
+        <label for="editc">单价:</label>
+        <input class="updateValue" type="text" id="editc" name="danjia">
+      </div>
+      <div class="form-group">
+        <label for="editPrice">数量:</label>
+        <input class="updateValue" type="text" id="editPrice" name="shuliang">
+      </div>
+      <div class="form-group">
+        <label for="editQuantity">金额:</label>
+        <input class="updateValue" type="text" id="editQuantity" name="jine">
+      </div>
+      <div class="form-group">
+        <label for="editAmount">日期:</label>
+        <input class="updateValue" type="text" id="editAmount" name="riqi">
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary">确定</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">取消</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 </body>
 <script src="../../js/axios.min.js"></script>
 <script>
@@ -161,30 +208,53 @@
       alert('获取收费信息失败，请稍后重试');
     });
   })
+
   function updateCost(id) {
-    const form = document.getElementById('addForm');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); // 阻止表单默认提交
-
-      // 获取表单数据
-      const formData = {
-        kebie: form.kebie.value.trim(),
-        number: form.number.value.trim(),
-        name: form.name.value.trim(),
-        xiangmu: form.xiangmu.value.trim(),
-        danjia: form.danjia.value.trim(),
-        shuliang: form.shuliang.value.trim(),
-        jine: form.jine.value.trim(),
-        riqi: form.riqi.value.trim()
-      };
-      // 表单验证
-      if (!formData.kebie || !formData.number || !formData.name || !formData.xiangmu || !formData.danjia || !formData.shuliang || !formData.jine || !formData.riqi) {
+    // 显示弹窗
+    document.getElementById('editModal').style.display = "block";
+    let save = document.querySelector(".btn-primary")
+    save.onclick = function () {
+      let updateValue = {};
+      let inputs = document.querySelectorAll(".updateValue")
+      inputs.forEach(input => {
+        // 获取元素的 name 属性作为键，值为输入框中的值
+        updateValue[input.name] = input.value;
+      });
+      console.log(JSON.stringify(updateValue))
+      if (updateValue.kebie === "" ||
+              updateValue.number === "" ||
+              updateValue.name === "" ||
+              updateValue.xiangmu === "" ||
+              updateValue.danjia === "" ||
+              updateValue.shuliang === "" ||
+              updateValue.jine === "" ||
+              updateValue.riqi === ""
+      ) {
         alert('请输入完整信息！');
       }else {
-
+        // 发送请求
+        axios({
+          url: `http://localhost:8080/costs/${id}`,
+          method: 'PUT',
+          data: updateValue
+        }).then(response => {
+          if (response.data.code === 200) {
+            alert('修改成功！');
+            // 跳转到列表页面
+            window.location.href = 'list_cost.html';
+          } else {
+            alert(response.data.message || '修改失败！');
+          }
+        }).catch(error => {
+          console.error('修改异常：', error);
+          alert('修改异常，请稍后重试！');
+        });
       }
-    })
+    }
+  }
+  // 关闭弹窗
+  function closeModal() {
+    document.getElementById('editModal').style.display = "none";
   }
 
   function deleteCost(id) {
@@ -192,7 +262,7 @@
       url: `http://localhost:8080/costs/${id}`,  // 使用URL中的id
       method: "DELETE",
     }).then((response) => {
-      if (response.data && response.data.code === 200) {
+      if (response.data.code === 200) {
         alert('删除成功！');
         window.location.href = 'list_cost.html';  // 跳转到列表页面
       } else {
@@ -269,5 +339,6 @@
       });
     }
   }
+
 </script>
 </html>

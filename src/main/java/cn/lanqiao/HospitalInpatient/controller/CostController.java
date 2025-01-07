@@ -1,5 +1,6 @@
 package cn.lanqiao.HospitalInpatient.controller;
 
+import cn.lanqiao.HospitalInpatient.model.pojo.Cost;
 import cn.lanqiao.HospitalInpatient.service.CostService;
 import cn.lanqiao.HospitalInpatient.utils.ResponseUtils;
 import cn.lanqiao.HospitalInpatient.model.vo.CostVo;
@@ -15,9 +16,9 @@ public class CostController {
     private CostService costService;
 
     @GetMapping
-    public ResponseUtils<List<CostVo>> selectAll(){
+    public ResponseUtils<List<Cost>> selectAll(){
         try {
-            List<CostVo> select = costService.selectAll();
+            List<Cost> select = costService.selectAll();
             if (select == null || select.isEmpty()){
                 // 增加空列表检查
                 return new ResponseUtils<>(304,"暂无查询数据");
@@ -32,9 +33,9 @@ public class CostController {
     }
 
     @GetMapping("{name}")
-    public ResponseUtils<List<CostVo>> select(@PathVariable String name){
+    public ResponseUtils<List<Cost>> select(@PathVariable String name){
         try {
-            List<CostVo> select = costService.select(name);
+            List<Cost> select = costService.selectByName(name);
             if (select == null || select.isEmpty()){
                 // 增加空列表检查
                 return new ResponseUtils<>(304,"暂无查询数据");
@@ -69,7 +70,7 @@ public class CostController {
     public ResponseUtils<CostVo> delete(@PathVariable int id){
         try {
             int delete = costService.delete(id);
-            if (delete > 1){
+            if (delete > 0){
                 return new ResponseUtils<>(200,"删除成功");
             } else {
                 return new ResponseUtils<>(400,"删除失败");
@@ -80,18 +81,19 @@ public class CostController {
         }
     }
 
-    @DeleteMapping("{id}")
-    public ResponseUtils<CostVo> update(@PathVariable int id){
+    @PutMapping("{id}")
+    public ResponseUtils<Cost> update(@PathVariable int id, @RequestBody Cost cost){
         try {
-            int delete = costService.delete(id);
-            if (delete > 1){
-                return new ResponseUtils<>(200,"删除成功");
+            cost.setId(id);
+            int update = costService.update(cost);
+            if (update > 0){
+                return new ResponseUtils<>(200,"修改成功");
             } else {
-                return new ResponseUtils<>(400,"删除失败");
+                return new ResponseUtils<>(400,"修改失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseUtils<>(500,"删除收费信息功能有误" + e.getMessage());
+            return new ResponseUtils<>(500,"修改收费信息功能有误" + e.getMessage());
         }
     }
 }
