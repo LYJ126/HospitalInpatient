@@ -34,7 +34,7 @@
     <tr>
       <td align="center" class="lan13b">
         病人姓名： <input id="brxm" name="brxm">
-        <input type="submit" name="button" value="查询" class="button">
+        <input type="button" name="button" value="查询" class="button" onclick="selectByName()">
       </td>
     </tr>
   </table>
@@ -59,7 +59,7 @@
           </td>
         </tr>
       </table>
-      <table width="100%" border="0" cellspacing="1" cellpadding="0" class="table-border margb5">
+      <table id="costTable" width="100%" border="0" cellspacing="1" cellpadding="0" class="table-border margb5">
         <tr>
           <td colspan="11" align="left" class="tabbg">
             <img src="../../images/main_pic_1.gif" align="absmiddle" width="16" height="16">
@@ -67,6 +67,7 @@
             <span class="lan13b"></span>
           </td>
         </tr>
+        <thead>
         <tr>
           <th width="3%" nowrap class="COLLECTION">
             科别
@@ -96,6 +97,9 @@
             管理
           </th>
         </tr>
+        </thead>
+        <tbody id="costBody">
+        </tbody>
         <!-- 此处数据行将通过JavaScript动态插入 -->
       </table>
       <form id="pageForm" action="list_cost.html" method="GET">
@@ -113,43 +117,157 @@
 </body>
 <script src="../../js/axios.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function selectAll() {
 
-    let value = document.getElementById("brxm").value;
-    console.log(value);
     // 发送 axios 请求，查询所有的病床信息
     axios({
       url: "http://localhost:8080/costs",
       method: "get",
-      data: value
     }).then((response) => {
-      // 获取表格元素
-      const table = document.getElementById('costInfoTable');
+      if (response.data.code === 200){
+        // 获取表格元素
+        const table = document.getElementById('costBody');
 
-      // 遍历响应数据
-      response.data.data.forEach(cost => {
-        // 创建新行
-        const row = document.createElement('tr');
+        // 遍历响应数据
+        response.data.data.forEach(cost => {
+          // 创建新行
+          const row = document.createElement('tr');
 
-        // 设置行内容
-        row.innerHTML = `
+          // 设置行内容
+          row.innerHTML = `
           <td align="center">${cost.kebie}</td>
           <td align="center">${cost.number}</td>
-          <td align="center">${cost.cost}元</td>
-          <td align="center">${cost.state}</td>
+          <td align="center">${cost.name}</td>
+          <td align="center">${cost.xiangmu}</td>
+          <td align="center">${cost.danjia}</td>
+          <td align="center">${cost.shuliang}</td>
+          <td align="center">${cost.jine}</td>
+          <td align="center">${cost.riqi}</td>
           <td align="center">
-            <a href="javascript:void(0)" onclick="editBed(${cost.id})">修改</a> |
-            <a href="javascript:void(0)" onclick="deleteBed(${cost.id})">删除</a>
+            <a href="javascript:void(0)" onclick="updateCost(${cost.id})">修改</a> |
+            <a href="javascript:void(0)" onclick="deleteCost(${cost.id})">删除</a>
           </td>
         `;
-
-        // 将新行添加到表格中
-        table.appendChild(row);
-      });
+          // 将新行添加到表格中
+          table.appendChild(row);
+        });
+      }else if (response.data.code === 200){
+        alert("暂无查询数据")
+      }else {
+        alert(response.data.message || '查询失败！');
+      }
     }).catch((error) => {
       console.error('请求失败：', error);
       alert('获取收费信息失败，请稍后重试');
     });
-  });
+  })
+  function updateCost(id) {
+    const form = document.getElementById('addForm');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // 阻止表单默认提交
+
+      // 获取表单数据
+      const formData = {
+        kebie: form.kebie.value.trim(),
+        number: form.number.value.trim(),
+        name: form.name.value.trim(),
+        xiangmu: form.xiangmu.value.trim(),
+        danjia: form.danjia.value.trim(),
+        shuliang: form.shuliang.value.trim(),
+        jine: form.jine.value.trim(),
+        riqi: form.riqi.value.trim()
+      };
+      // 表单验证
+      if (!formData.kebie || !formData.number || !formData.name || !formData.xiangmu || !formData.danjia || !formData.shuliang || !formData.jine || !formData.riqi) {
+        alert('请输入完整信息！');
+      }else {
+
+      }
+    })
+  }
+
+  function deleteCost(id) {
+    axios({
+      url: `http://localhost:8080/costs/${id}`,  // 使用URL中的id
+      method: "DELETE",
+    }).then((response) => {
+      if (response.data && response.data.code === 200) {
+        alert('删除成功！');
+        window.location.href = 'list_cost.html';  // 跳转到列表页面
+      } else {
+        alert(response.data.message || '删除失败！');
+      }
+    }).catch((error) => {
+      console.error('请求失败：', error);
+      if (error.response) {
+        // 后端返回了错误状态码
+        alert('删除失败：' + (error.response.data.message || '未知错误'));
+      } else if (error.request) {
+        // 请求没有返回响应
+        alert('网络错误，请检查连接');
+      } else {
+        // 其他错误
+        alert('请求失败，请稍后重试');
+      }
+    });
+  }
+
+  function selectByName() {
+    let name = document.getElementById("brxm").value;
+    if (name === '') {
+      window.location.href = 'list_cost.html';
+    }else {
+      axios({
+        url: `http://localhost:8080/costs/${name}`,
+        method: "get",
+      }).then((response) => {
+        if (response.data.code === 200){
+          // 获取表格元素
+          const table = document.getElementById('costBody');
+          table.innerHTML = ''; // 清空表格内容
+          // 遍历响应数据
+          response.data.data.forEach(cost => {
+            // 创建新行
+            const row = document.createElement('tr');
+
+            // 设置行内容
+            row.innerHTML = `
+          <td align="center">${cost.kebie}</td>
+          <td align="center">${cost.number}</td>
+          <td align="center">${cost.name}</td>
+          <td align="center">${cost.xiangmu}</td>
+          <td align="center">${cost.danjia}</td>
+          <td align="center">${cost.shuliang}</td>
+          <td align="center">${cost.jine}</td>
+          <td align="center">${cost.riqi}</td>
+          <td align="center">
+            <a href="javascript:void(0)" onclick="updateCost(${cost.id})">修改</a> |
+            <a href="javascript:void(0)" onclick="deleteCost(${cost.id})">删除</a>
+          </td>
+        `;
+            // 将新行添加到表格中
+            table.appendChild(row);
+          })
+        }else if (response.data.code === 200){
+          alert("暂无查询数据")
+        } else {
+          alert(response.data.message || '查询失败！');
+        }
+      }).catch((error) => {
+        console.error('请求失败：', error);
+        if (error.response) {
+          // 后端返回了错误状态码
+          alert('查询失败：' + (error.response.data.message || '未知错误'));
+        } else if (error.request) {
+          // 请求没有返回响应
+          alert('网络错误，请检查连接');
+        } else {
+          // 其他错误
+          alert('请求失败，请稍后重试');
+        }
+      });
+    }
+  }
 </script>
 </html>

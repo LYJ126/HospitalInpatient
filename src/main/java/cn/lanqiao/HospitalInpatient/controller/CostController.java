@@ -32,7 +32,7 @@ public class CostController {
     }
 
     @GetMapping("{name}")
-    public ResponseUtils<List<CostVo>> select(@RequestBody String name){
+    public ResponseUtils<List<CostVo>> select(@PathVariable String name){
         try {
             List<CostVo> select = costService.select(name);
             if (select == null || select.isEmpty()){
@@ -62,6 +62,36 @@ public class CostController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseUtils<>(500,"添加收费信息功能有误" + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseUtils<CostVo> delete(@PathVariable int id){
+        try {
+            int delete = costService.delete(id);
+            if (delete > 1){
+                return new ResponseUtils<>(200,"删除成功");
+            } else {
+                return new ResponseUtils<>(400,"删除失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseUtils<>(500,"删除收费信息功能有误" + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseUtils<CostVo> update(@PathVariable int id){
+        try {
+            int delete = costService.delete(id);
+            if (delete > 1){
+                return new ResponseUtils<>(200,"删除成功");
+            } else {
+                return new ResponseUtils<>(400,"删除失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseUtils<>(500,"删除收费信息功能有误" + e.getMessage());
         }
     }
 }

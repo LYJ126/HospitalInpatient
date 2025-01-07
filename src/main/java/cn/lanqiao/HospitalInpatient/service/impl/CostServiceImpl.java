@@ -37,7 +37,7 @@ public class CostServiceImpl implements CostService {
 
     @Override
     public int delete(int id) {
-        return 0;
+        return costMapper.delete(id);
     }
 
     @Override

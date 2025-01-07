@@ -136,11 +136,9 @@
         jine: form.jine.value.trim(),
         riqi: form.riqi.value.trim()
       };
-      console.log(formData)
       // 表单验证
       if (!formData.kebie || !formData.number || !formData.name || !formData.xiangmu || !formData.danjia || !formData.shuliang || !formData.jine || !formData.riqi) {
         alert('请输入完整信息！');
-        return;
       }else {
         // 发送请求
         axios({
