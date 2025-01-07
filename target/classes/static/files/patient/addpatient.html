@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<FORM id="addForm" action="savepatient.html" method="post" onsubmit="return checkform()"> <!-- 假设处理表单提交的后端页面为savepatient.html，按需调整 -->
+<FORM id="addForm" action="savepatient.html" method="post"> <!-- 假设处理表单提交的后端页面为savepatient.html，按需调整 -->
 
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
     <tr>
@@ -116,6 +116,7 @@
 
 </FORM>
 
+
 <br>
 <br>
 <br>
@@ -124,97 +125,3 @@
 </body>
 
 </html>
-<script src="../../js/axios.min.js"></script>
-<script>
-  // 表单验证函数
-  function checkform() {
-    // 获取表单数据
-    const kebie = document.querySelector('input[name="kebie"]').value.trim();
-    const number = document.querySelector('input[name="number"]').value.trim();
-    const name = document.querySelector('input[name="name"]').value.trim();
-    const sex = document.querySelector('input[name="sex"]').value.trim();
-    const age = document.querySelector('input[name="age"]').value.trim();
-    const bingzheng = document.querySelector('input[name="bingzheng"]').value.trim();
-    const doctor = document.querySelector('input[name="doctor"]').value.trim();
-    const ruyuan = document.querySelector('input[name="ruyuan"]').value.trim();
-    const chuyuan = document.querySelector('input[name="chuyuan"]').value.trim();
-
-    // 验证必填字段
-    if (!kebie) {
-      alert('请输入科室');
-      return false;
-    }
-    if (!number) {
-      alert('请输入病床号');
-      return false;
-    }
-    if (!name) {
-      alert('请输入姓名');
-      return false;
-    }
-
-    // 构造请求数据
-    const patientData = {
-      kebie: kebie,
-      number: number,
-      name: name,
-      sex: sex,
-      age: age,
-      bingzheng: bingzheng,
-      doctor: doctor,
-      ruyuan: ruyuan,
-      chuyuan: chuyuan
-    };
-
-    console.log('发送的数据：', patientData);
-
-    // 发送请求
-    axios({
-      url: 'http://localhost:8080/patient/add', // 修改为正确的添加病人信息的URL
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      data: JSON.stringify(patientData)  // 将对象转换为 JSON 字符串
-    }).then(response => {
-      console.log('响应数据：', response.data);
-
-      if (response.data.code === 1) {
-        alert('添加成功');
-        window.location.href = 'list_patient.html'; // 修改为病人信息列表页面
-      } else {
-        // 使用 msg 字段而不是 message
-        alert(response.data.msg || '添加失败');
-      }
-    }).catch(error => {
-      console.error('添加失败：', error);
-      if (error.response) {
-        console.error('错误详情：', error.response.data);
-      }
-      alert('添加失败，请检查输入数据');
-    });
-
-    return false; // 阻止表单默认提交
-  }
-
-  // 日期选择器初始化
-  window.onload = function() {
-    if (typeof WdatePicker !== 'undefined') {
-      // 如果 WdatePicker 存在，则初始化
-      const dateInputs = document.querySelectorAll('.Wdate');
-      dateInputs.forEach(input => {
-        input.onclick = function() {
-          WdatePicker({ readOnly: true });
-        };
-      });
-    } else {
-      // 如果没有引入 WdatePicker，添加一个简单的日期输入提示
-      const dateInputs = document.querySelectorAll('.Wdate');
-      dateInputs.forEach(input => {
-        input.type = 'date';
-        input.onfocus = null; // 移除 onfocus 事件以避免报错
-      });
-    }
-  };
-</script>

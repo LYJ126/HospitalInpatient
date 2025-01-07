@@ -5,27 +5,175 @@
   <meta charset="UTF-8">
   <title>用户信息列表</title>
   <link rel="stylesheet" type="text/css" href="../../css/doctor/list_user.css">
-  <style>
-    A:LINK {
-      COLOR: blue;
-      FONT-SIZE: 12PT;
-      TEXT-DECORATION: none;
-    }
 
-    A:VISITED {
-      COLOR: blue;
-      FONT-SIZE: 12PT;
-      TEXT-DECORATION: none;
-    }
-
-    A:HOVER {
-      COLOR: red;
-      FONT-SIZE: 12PT;
-      TEXT-DECORATION: underline;
-    }
-  </style>
 </head>
+<style>
+  /* 整体布局 */
+  body {
+    font-family: "Microsoft YaHei", sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
 
+  /* 导航路径 */
+  .nav-path {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-path img {
+    margin-right: 10px;
+  }
+
+  .nav-path .path-text {
+    color: #2c3e50;
+    font-weight: bold;
+  }
+
+  /* 搜索区域 */
+  .search-area {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  #ysxm {
+    padding: 10px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 6px;
+    width: 250px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+  }
+
+  #ysxm:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+    outline: none;
+  }
+
+  /* 按钮样式 */
+  .button {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52,152,219,0.3);
+  }
+
+  /* 添加按钮 */
+  .add-button {
+    margin-bottom: 20px;
+  }
+
+  .add-button img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .add-button img:hover {
+    transform: scale(1.1);
+  }
+
+  /* 表格样式 */
+  .table-border {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .table-border th {
+    background: #3498db;
+    color: white;
+    padding: 15px;
+    text-align: left;
+  }
+
+  .table-border td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e1e8ed;
+  }
+
+  .table-border tr:hover {
+    background-color: #f8fafc;
+  }
+
+  /* 操作链接 */
+  .action-links a {
+    color: #3498db;
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .action-links a:hover {
+    background: #3498db;
+    color: white;
+  }
+
+  /* 表格标题行 */
+  .tabbg {
+    background: #f8fafc;
+    padding: 10px;
+    border-bottom: 2px solid #3498db;
+  }
+
+  /* 状态标签 */
+  .status-tag {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .male {
+    background: #e8f4fd;
+    color: #3498db;
+  }
+
+  .female {
+    background: #fce7f3;
+    color: #d53f8c;
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .search-area {
+      padding: 15px;
+    }
+
+    #ysxm {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .table-border {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+</style>
 <body bgcolor="#ffffff">
 <br>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">

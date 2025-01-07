@@ -23,8 +23,8 @@
       TEXT-DECORATION: underline;
     }
   </style>
-<!--  <link rel="stylesheet" type="text/css" href="../../static/images/css1/ioa.css"> &lt;!&ndash; 确保此路径能正确加载样式文件 &ndash;&gt;-->
-  <script src="../../js/cost/list_cost.js"></script> <!-- 引入外部JavaScript文件，用于实现具体业务逻辑 -->
+  <link rel="stylesheet" type="text/css" href="../../css/ioa.css"> <!-- 注意这里路径需确保正确，原JSP中通过相对路径引入样式 -->
+<!--  <script src="../../js/cost/list_cost.js"></script> &lt;!&ndash; 引入外部JavaScript文件，用于实现具体业务逻辑 &ndash;&gt;-->
 </head>
 
 <body bgcolor="#ffffff">
@@ -33,7 +33,7 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dqbg margb5">
     <tr>
       <td align="center" class="lan13b">
-        病人姓名： <input id="brxm" name="brxm" value="">
+        病人姓名： <input id="brxm" name="brxm">
         <input type="submit" name="button" value="查询" class="button">
       </td>
     </tr>
@@ -48,7 +48,7 @@
             <img src="../../images/img2.gif" width="16" height="16">
           </td>
           <td width="98%" align="left" class="lan13b">
-            病人管理 > 病人信息管理
+            收费管理 > 查询收费信息
           </td>
         </tr>
       </table>
@@ -111,5 +111,45 @@
   </tr>
 </table>
 </body>
+<script src="../../js/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
 
+    let value = document.getElementById("brxm").value;
+    console.log(value);
+    // 发送 axios 请求，查询所有的病床信息
+    axios({
+      url: "http://localhost:8080/costs",
+      method: "get",
+      data: value
+    }).then((response) => {
+      // 获取表格元素
+      const table = document.getElementById('costInfoTable');
+
+      // 遍历响应数据
+      response.data.data.forEach(cost => {
+        // 创建新行
+        const row = document.createElement('tr');
+
+        // 设置行内容
+        row.innerHTML = `
+          <td align="center">${cost.kebie}</td>
+          <td align="center">${cost.number}</td>
+          <td align="center">${cost.cost}元</td>
+          <td align="center">${cost.state}</td>
+          <td align="center">
+            <a href="javascript:void(0)" onclick="editBed(${cost.id})">修改</a> |
+            <a href="javascript:void(0)" onclick="deleteBed(${cost.id})">删除</a>
+          </td>
+        `;
+
+        // 将新行添加到表格中
+        table.appendChild(row);
+      });
+    }).catch((error) => {
+      console.error('请求失败：', error);
+      alert('获取收费信息失败，请稍后重试');
+    });
+  });
+</script>
 </html>
