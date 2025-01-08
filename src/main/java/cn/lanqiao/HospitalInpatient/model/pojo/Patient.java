@@ -1,34 +1,59 @@
 package cn.lanqiao.HospitalInpatient.model.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
-@AllArgsConstructor
-@NoArgsConstructor
+/**
+ * <p>
+ *
+ * </p>
+ *
+ * @author author
+ * @since 2025-01-04
+ */
 @Data
-@TableName("t_cms_hotel")
-public class Patient {
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("patient")
+public class Patient implements Serializable {
 
-  private long id;
-  // 科别
+  private static final long serialVersionUID = 1L;
+
+  @TableId(value = "id", type = IdType.AUTO)
+  private Integer id;
+
+  @TableField("kebie")
   private String kebie;
-  // 病床号
+
+  @TableField("number")
   private String number;
-  // 姓名
+
+  @TableField("name")
   private String name;
-  // 性别
+
+  @TableField("sex")
   private String sex;
-  // 年龄
+
+  @TableField("age")
   private String age;
-  // 病症
+
+  @TableField("bingzheng")
   private String bingzheng;
-  // 主治医生
+
+  @TableField("doctor")
   private String doctor;
-  // 入院日期
+
+  @TableField("ruyuan")
   private String ruyuan;
-  // 出院日期
+
+  @TableField("chuyuan")
   private String chuyuan;
+
 
 }
