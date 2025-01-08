@@ -165,7 +165,6 @@
 <script src="../../js/axios.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function selectAll() {
-
     // 发送 axios 请求，查询所有的病床信息
     axios({
       url: "http://localhost:8080/costs",
@@ -258,29 +257,31 @@
   }
 
   function deleteCost(id) {
-    axios({
-      url: `http://localhost:8080/costs/${id}`,  // 使用URL中的id
-      method: "DELETE",
-    }).then((response) => {
-      if (response.data.code === 200) {
-        alert('删除成功！');
-        window.location.href = 'list_cost.html';  // 跳转到列表页面
-      } else {
-        alert(response.data.message || '删除失败！');
-      }
-    }).catch((error) => {
-      console.error('请求失败：', error);
-      if (error.response) {
-        // 后端返回了错误状态码
-        alert('删除失败：' + (error.response.data.message || '未知错误'));
-      } else if (error.request) {
-        // 请求没有返回响应
-        alert('网络错误，请检查连接');
-      } else {
-        // 其他错误
-        alert('请求失败，请稍后重试');
-      }
-    });
+    if(confirm('确定要删除这条收费记录吗？')) {
+      axios({
+        url: `http://localhost:8080/costs/${id}`,  // 使用URL中的id
+        method: "DELETE",
+      }).then((response) => {
+        if (response.data.code === 200) {
+          alert('删除成功！');
+          window.location.href = 'list_cost.html';  // 跳转到列表页面
+        } else {
+          alert(response.data.message || '删除失败！');
+        }
+      }).catch((error) => {
+        console.error('请求失败：', error);
+        if (error.response) {
+          // 后端返回了错误状态码
+          alert('删除失败：' + (error.response.data.message || '未知错误'));
+        } else if (error.request) {
+          // 请求没有返回响应
+          alert('网络错误，请检查连接');
+        } else {
+          // 其他错误
+          alert('请求失败，请稍后重试');
+        }
+      });
+    }
   }
 
   function selectByName() {
