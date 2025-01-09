@@ -8,7 +8,4 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface AdminUserMapper extends BaseMapper<Admin> {
-
-//    @Select("select * from admin where username = #{username} and password = #{password}")
-//    Admin login(Admin admin);
 }
