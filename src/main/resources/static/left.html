@@ -300,22 +300,7 @@
 </table>
 <script src="js/left.js"></script> <!-- 假设把JavaScript代码放在script.js中 -->
 <script>
-  // 防止违规跳转
-  if (window.self!== window.top) {
-    // 页面在iframe中，正常显示
-  } else {
-    // 页面被单独访问，重定向到错误页面
-    window.location.href = 'error.html';
-  }
-
-  // 删除登录信息
-  function deleteCookie(name) {
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  }
-
-  // 退出系统
   function loginOut() {
-    deleteCookie('adminUsername');
     top.window.location.href = "login.html";
     console.log("TEST")
     return false;
@@ -329,7 +314,7 @@
       whichEl.style.display = "none";
     }
   }
-</script>
+</script> <!-- 假设把JavaScript代码放在script.js中 -->
 </body>
 
 </html>
