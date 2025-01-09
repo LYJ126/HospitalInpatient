@@ -2,21 +2,20 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF - 8">
   <title>删除医生信息</title>
   <script src="../../js/axios.min.js"></script>
 </head>
 
 <body>
-<h2>删除医生信息操作</h2>
+<h2>删除医生信息操作（此为示例，实际需结合完整业务逻辑）</h2>
 <form id="deleteForm">
-  <label for="">请输入要删除医生的ID：</label>
-  <input type="text" id="doctorId">
+  <label for="doctorId">请输入要删除医生的ID：</label>
+  <input type="text" id="doctorId" name="id" placeholder="医生ID">
   <input type="button" value="删除" onclick="deleteDoctor()">
 </form>
-
 <script>
-  // 获取 URL 参数
+<!--  设置输入框值：在页面加载时，调用解析函数并将解析到的 id 设置到输入框中。-->
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -30,42 +29,32 @@
     }
   }
 
-  // 发送 DELETE 请求
-  function deleteDoctor() {
-    const doctorId = document.getElementById('doctorId').value.trim(); // 获取输入的医生ID
-
-    if (!doctorId) {
-      alert('请输入医生ID');
-      return; // 如果没有输入ID，提示并返回
-    }
-
-    axios({
-      url: `http://localhost:8080/doctor/delete/${doctorId}`, // 修改为正确的删除医生信息的URL
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      console.log('响应数据：', response.data);
-
-      if (response.data.code === 1) {
-        alert('删除成功');
-        window.location.href = 'list_user.html'; // 修改为医生信息列表页面
-      } else {
-        alert(response.data.msg || '删除失败');
-      }
-    }).catch(error => {
-      console.error('删除失败：', error);
-      if (error.response) {
-        console.error('错误详情：', error.response.data);
-      }
-      alert('删除失败，请检查输入数据');
-    });
-  }
-
   // 在页面加载时调用 setDoctorIdFromUrl 函数
   window.onload = setDoctorIdFromUrl;
+  function deleteDoctor() {
+    const doctorId = document.getElementById('doctorId').value;
+    if (!doctorId) {
+      alert('请输入医生ID');
+      return;
+    }
+    const url = `http://localhost:8080/doctor/delete/${doctorId}`;
+    axios.delete(url)
+            .then(response => {
+              if (response.data.code === 1) {
+                alert('医生信息删除成功');
+                console.log('删除成功响应:', response.data);
+                // 重定向到 list_user.html 页面
+                window.location.href = 'list_user.html';
+              } else {
+                alert('删除医生信息失败:'+ response.data.msg);
+                console.error('删除失败响应:', response.data);
+              }
+            })
+            .catch(error => {
+              alert('删除医生信息失败');
+              console.error('删除失败错误:', error);
+            });
+  }
 </script>
 </body>
 
