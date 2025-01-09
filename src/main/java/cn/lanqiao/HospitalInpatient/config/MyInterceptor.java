@@ -37,7 +37,7 @@ public class MyInterceptor implements HandlerInterceptor {
 
     private boolean isAllowed(HttpServletRequest request) {
         // 实现具体的权限验证逻辑，例如检查用户是否登录
-        // 简单示例：假设登录用户的信息存储在session中
+        // 登录用户的信息存储在session中
         return request.getSession().getAttribute("user")!= null;
     }
 }
