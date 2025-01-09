@@ -57,20 +57,6 @@
 </body>
 <script src="js/axios.min.js"></script>
 <script>
-    const message = ${update};
-    alert(message)
-    console.log(message)
-
-    // 删除登录信息
-    function deleteCookie(name) {
-        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    }
-
-    window.addEventListener('load', function () {
-        // 假设要删除名为 'adminUsername' 的cookie
-        deleteCookie('adminUsername');
-    });
-
     const username = document.forms["form1"]["username"].value.value.trim()
     const password = document.forms["form1"]["password"].value.value.trim()
     function login() {

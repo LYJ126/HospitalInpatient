@@ -6,11 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>change</title>
   <link rel="stylesheet" href="css/ioa.css"> <!-- 确保路径正确，对应原JSP中的ioa.css样式文件 -->
+  <script src="js/pwd.js"></script> <!-- 引入外部JavaScript文件，用于实现业务逻辑 -->
 </head>
 
 <body>
 <center>
-  <form id="pwdForm" action="/adminUser/update" method="POST">
+  <form id="pwdForm" action="update_pwd.html" method="POST">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad5">
       <tr>
         <td valign="top" align="left" class="pad5">
@@ -26,19 +27,19 @@
             <tr>
               <td width="14%" align="right" class="COLLECTION">请输入原密码：</td>
               <td width="36%" align="left" class="even padl5">
-                <input type="password" id="originalPassword" name="originalPassword" maxlength="32">
+                <input type="password" id="pwd1" name="pwd1" maxlength="32">
               </td>
             </tr>
             <tr>
               <td width="14%" align="right" class="COLLECTION">请输入新密码：</td>
               <td width="36%" align="left" class="even padl5">
-                <input type="password" id="newPassword" name="newPassword" maxlength="32" class="inputnormal" value="">
+                <input type="password" id="pwd2" name="pwd2" maxlength="32" class="inputnormal" value="">
               </td>
             </tr>
             <tr>
               <td width="14%" align="right" class="COLLECTION">确认新密码：</td>
               <td width="36%" align="left" class="even padl5">
-                <input type="password" id="confirmPassword" name="confirmPassword" maxlength="32" class="inputnormal" value="">
+                <input type="password" id="pwd3" name="pwd3" maxlength="32" class="inputnormal" value="">
               </td>
             </tr>
           </table>
@@ -58,46 +59,5 @@
   </form>
 </center>
 </body>
-<script src="js/axios.min.js"></script>
-<script>
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
 
-  // 修改密码主代码
-  document.getElementById('pwdForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    // 读取cookie
-    let adminUsername = getCookie('adminUsername');
-
-    let originalPassword = document.getElementById('originalPassword').value;
-    let newPassword = document.getElementById('newPassword').value;
-    let confirmPassword = document.getElementById('confirmPassword').value;
-
-    if (newPassword !== confirmPassword) {
-      alert('两次输入的密码不一致');
-    }else {
-      axios({
-        method: 'post',
-        url: '/adminUser/update',
-        data: {
-          username: adminUsername,
-          originalPassword: originalPassword,
-          newPassword: newPassword
-        }
-      }).then((result)=>{
-        console.log(result)
-        if (result.data.code === 200) {
-          alert("账户密码修改成功，请重新登录");
-          top.window.location.href = result.data.data;
-        }else {
-          alert("账号密码修改失败");
-        }
-      });
-    }
-  });
-</script>
 </html>
