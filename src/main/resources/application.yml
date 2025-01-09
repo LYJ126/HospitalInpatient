@@ -1,11 +1,6 @@
 server:
  port: 8080
 spring:
-  mvc:
-    sataic - path - patterns: /static/**
-  web:
-    resources:
-      static-locations: classpath:/static/
   datasource:
     username: root
     password: 20010720Lmx
