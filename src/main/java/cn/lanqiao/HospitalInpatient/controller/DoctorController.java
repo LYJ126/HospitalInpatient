@@ -5,12 +5,13 @@ import cn.lanqiao.HospitalInpatient.model.dto.DoctorDto;
 import cn.lanqiao.HospitalInpatient.model.pojo.Doctor;
 import cn.lanqiao.HospitalInpatient.result.Result;
 import cn.lanqiao.HospitalInpatient.service.IDoctorService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
 
 
 @RestController
@@ -38,8 +39,16 @@ public class DoctorController {
     @PostMapping("/add")
     public Result<String> save(@RequestBody Doctor doctor){
         log.info("添加医生数据参数{}", doctor);
-        iDoctorService.save(doctor);
-        return Result.success("添加成功");
+        // exists 方法检查 number 是否已存在
+        LambdaQueryWrapper<Doctor> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Doctor::getNumber,doctor.getNumber());
+        boolean exists = iDoctorService.exists(queryWrapper);
+        if (exists){
+            return  Result.error("医生编号重复 请重试");
+        }else {
+            iDoctorService.save(doctor);
+            return Result.success("添加成功");
+        }
     }
 
     /***
