@@ -26,12 +26,4 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 //        将自己的消息转换器加入容器
         converters.add(0,converter);
     }
-
-    // 拦截器
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor())
-                .addPathPatterns("/**"). // 拦截所有请求
-                excludePathPatterns("/login", "/login.html", ""); // 排除登录请求
-    }
 }
