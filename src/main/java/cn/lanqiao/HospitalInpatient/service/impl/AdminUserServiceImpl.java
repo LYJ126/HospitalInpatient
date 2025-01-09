@@ -8,17 +8,4 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, Admin> implements AdminUserService {
-
-//    @Autowired
-//    private AdminUserMapper adminUserMapper;
-
-//    @Override
-//    public Admin login(Admin admin) {
-//        Admin result = adminUserMapper.login(admin);
-//        if (result != null) {
-//            return result;
-//        }else {
-//            return null;
-//        }
-//    }
 }
