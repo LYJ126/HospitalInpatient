@@ -300,7 +300,14 @@
 </table>
 <script src="js/left.js"></script> <!-- 假设把JavaScript代码放在script.js中 -->
 <script>
+  // 删除登录信息
+  function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  }
+
+  // 退出系统
   function loginOut() {
+    deleteCookie('adminUsername');
     top.window.location.href = "login.html";
     console.log("TEST")
     return false;
