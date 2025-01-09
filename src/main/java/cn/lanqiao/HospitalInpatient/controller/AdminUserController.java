@@ -1,5 +1,7 @@
 package cn.lanqiao.HospitalInpatient.controller;
 
+import cn.lanqiao.HospitalInpatient.model.dto.AdminDto;
+import cn.lanqiao.HospitalInpatient.utils.ResponseUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Cookie;
@@ -12,7 +14,9 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Slf4j
 @Controller
@@ -26,7 +30,7 @@ public class AdminUserController {
     public String login(Admin admin, Model model, HttpSession session, HttpServletRequest request,
                         HttpServletResponse response) {
 
-        // TODO 实现登录功能：
+        // TODO MyBatisPlus实现登录功能：
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("USERNAME",admin.getUsername());
         queryWrapper.eq("PASSWORD",admin.getPassword());
@@ -34,7 +38,7 @@ public class AdminUserController {
 
         System.out.println("查询中");
         if (user == null) {
-            model.addAttribute("message", "账号或密码错误");
+            model.addAttribute("login", "账号或密码错误");
             return "redirect:/login.html";
         } else {
             session.setAttribute("user", user);
@@ -47,6 +51,30 @@ public class AdminUserController {
             response.addCookie(usernameCookie);
 
             return "redirect:/index.html";
+        }
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public ResponseUtils update(@RequestBody AdminDto adminDto, HttpSession session){
+        // 读取键值为user的session
+        Admin admin = (Admin) session.getAttribute("user");
+        // 判断密码是否正确
+        if (admin.getPassword().equals(adminDto.getOriginalPassword())) {
+            QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("USERNAME",adminDto.getUsername());
+            // 设置新密码
+            admin.setPassword(adminDto.getNewPassword());
+            log.info("密码修改: {}", admin);
+            boolean update = adminUserService.update(admin, queryWrapper);
+            if (update){
+                return new ResponseUtils(200,"true", "/login.html");
+            }else {
+                return new ResponseUtils(500,"false");
+            }
+        } else {
+            System.out.println("密码不匹配");
+            return new ResponseUtils(500,"false");
         }
     }
 }
