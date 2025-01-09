@@ -18,7 +18,7 @@ public class Doctor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-//    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     @TableField("number")
