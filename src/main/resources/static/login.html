@@ -20,27 +20,31 @@
         </td>
         <td width="195" background="images/login_2.gif">
             <table width="190" height="106" border="0" align="center" cellpadding="2" cellspacing="0">
-                <form name="form1" method="post" action="/adminUser/login">
+                <form name="form1">
                     <tr>
                         <td height="50" colspan="2" align="left">&nbsp;</td>
                     </tr>
                     <tr>
                         <td width="60" height="30" align="left">用户名</td>
-                        <td><input name="username" type="text" style="background:url(images/login_6.gif) repeat-x; border:solid 1px #27B3FE; height:20px; background-color:#FFFFFF" id="UserName"
-                                   size="14"></td>
+                        <td>
+                            <input name="username" type="text" style="background:url(images/login_6.gif) repeat-x; border:solid 1px #27B3FE; height:20px; background-color:#FFFFFF" id="UserName" size="14">
+                        </td>
                     </tr>
                     <tr>
                         <td height="30" align="left">密  码</td>
-                        <td><input name="password" TYPE="password" style="background:url(images/login_6.gif) repeat-x; border:solid 1px #27B3FE; height:20px; background-color:#FFFFFF" id="Password"
-                                   size="16"></td>
+                        <td>
+                            <input name="password" TYPE="password" style="background:url(images/login_6.gif) repeat-x; border:solid 1px #27B3FE; height:20px; background-color:#FFFFFF" id="PassWord" size="16">
+                        </td>
                     </tr>
 
                     <tr>
                         <td height="40" colspan="2" align="center"><img src="images/tip.gif" width="16" height="16"> 请勿非法登陆！</td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" name="submit" onClick="return login()" style="background:url(images/login_5.gif) no-repeat" value=" 登  陆 ">
-                            <input type="reset" name="Submit" style="background:url(images/login_5.gif) no-repeat" value=" 取  消 "></td>
+                        <td colspan="2" align="center">
+                            <input type="button" name="submit" onclick="login()" style="background:url(images/login_5.gif) no-repeat" value=" 登  陆 ">
+                            <input type="reset" name="Submit" style="background:url(images/login_5.gif) no-repeat" value=" 取  消 ">
+                        </td>
                     </tr>
                     <tr>
                         <td height="5" colspan="2"></td>
@@ -57,20 +61,34 @@
 </body>
 <script src="js/axios.min.js"></script>
 <script>
-    const username = document.forms["form1"]["username"].value.value.trim()
-    const password = document.forms["form1"]["password"].value.value.trim()
     function login() {
-        if (username === "") {
+        let username = document.getElementById("UserName").value.trim()
+        let password = document.getElementById("PassWord").value.trim()
+        if (username === "" || password === "") {
             alert("用户名不能为空，请确定后重新输入");
-            document.forms["form1"]["username"].focus();
-            return false;
+        }else {
+            // 发送请求
+            axios({
+                url: 'http://localhost:8080/admins',
+                method: 'post',
+                data: {
+                    username: username,
+                    password: password
+                }
+            }).then(response => {
+                if (response.data.code === 200) {
+                    // 跳转到列表页面
+                    window.location.href = 'index.html';
+                }else if (response.data.code === 304){
+                    alert("用户名或密码错误，请重新输入");
+                }else {
+                    alert("登录异常，请稍后重试！");
+                }
+            }).catch(error => {
+                console.error('登录异常：', error);
+                alert('登录异常，请稍后重试！');
+            });
         }
-        if (password === "") {
-            alert("密码不能为空，请确定后重新输入");
-            document.forms["form1"]["password"].focus();
-            return false;
-        }
-        return false;
     }
 </script>
 </html>
