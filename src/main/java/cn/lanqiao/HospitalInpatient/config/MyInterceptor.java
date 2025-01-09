@@ -5,25 +5,39 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+
 public class MyInterceptor implements HandlerInterceptor {
 
     // 请求处理之前执行
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("请求路径: " + request.getRequestURI());
-        // 返回 true 表示继续执行后续的处理（即进入 Controller），返回 false 则表示请求被拦截，后续不再执行
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+        // 如果是登录请求，直接放行
+        if ("/adminUser/login".equals(request.getRequestURI())) {
+            return true;
+        }
+        // 请求处理前的逻辑，例如权限验证
+        // 如果不满足条件，重定向到指定页面
+        if (!isAllowed(request)) {
+            response.sendRedirect("/login.html");
+            return false;
+        }
         return true;
     }
 
-    // 请求处理之后，视图渲染之前执行
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("请求处理完毕，返回视图之前");
+        // 请求处理后，视图渲染前的逻辑
     }
 
-    // 请求处理完毕，视图渲染之后执行
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("请求处理完毕，响应返回之后");
+        // 请求完成后的逻辑，例如记录日志
+    }
+
+    private boolean isAllowed(HttpServletRequest request) {
+        // 实现具体的权限验证逻辑，例如检查用户是否登录
+        // 简单示例：假设登录用户的信息存储在session中
+        return request.getSession().getAttribute("user")!= null;
     }
 }
